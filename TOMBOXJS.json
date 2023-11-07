@@ -6,7 +6,7 @@
     "icon": "https://avatars2.githubusercontent.com/u/53217160",
     "repo": "https://github.com/LeonardoNorskog/TOMM_BOXJS/blob/main/sign.js",
     "apps": [{
-      "id": "",
+      "id": "sign",
       "name": "签到",
       "keys": ["@TOMM.ID", "@TOMM.PW"],
       "descs_html": [
@@ -31,9 +31,6 @@
       "author": "@TommyLee",
       "repo": "https://github.com/LeonardoNorskog/TOMM_BOXJS/blob/main/sign.js",
       "icons": ["https://avatars2.githubusercontent.com/u/53217160"]
-    }],
-    "task": [{
-      "config": "0 8 * * * https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/sign.js, tag=签到, img-url=https://avatars2.githubusercontent.com/u/53217160"
     }]
   }
   
