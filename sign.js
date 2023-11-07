@@ -1,11 +1,10 @@
-//什么也没有
 const $ = new Env('签到');
 
 // 用户名
-$.uid = $.getdata('@@TOMM.ID.ID') || 'YourUserName';
+$.uid = $.getdata('@@TOMM.ID') || 'YourUserName';
 
 // 用户密码
-$.pwd = $.getdata('@@TOMM.ID.PW') || 'YourUserPassword';
+$.pwd = $.getdata('@@TOMM.PW') || 'YourUserPassword';
 
 //Bark APP 通知推送Key
 $.barkKey = '';
