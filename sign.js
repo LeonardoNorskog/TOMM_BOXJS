@@ -6,11 +6,7 @@ $.uid = $.getdata('@@TOMM.ID') || 'YourUserName';
 // 用户密码
 $.pwd = $.getdata('@@TOMM.PW') || 'YourUserPassword';
 
-//Bark APP 通知推送Key
-$.barkKey = '';
 
-// 为通知准备的空数组
-$.notifyMsg = [];
 
 
 
