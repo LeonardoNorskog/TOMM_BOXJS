@@ -1,0 +1,39 @@
+{
+    "id": "TommyLee.app.sub",
+    "name": "TommyLee 脚本订阅",
+    "description": "该订阅兼容BoxJs以及QX Gallery",
+    "author": "@TommyLee",
+    "icon": "https://avatars2.githubusercontent.com/u/53217160",
+    "repo": "https://github.com/NobyDa/Script/tree/master",
+    "apps": [{
+      "id": "Bahamut",
+      "name": "巴哈姆特",
+      "keys": ["@TOMM.ID", "@TOMM.PW"],
+      "descs_html": [
+        "<h4 align=\"center\">脚本配置请查看<a href=\"https://raw.githubusercontent.com/NobyDa/Script/master/Bahamut/BahamutDailyBonus.js\">脚本注释</a></h4>"
+      ],
+      "settings": [{
+        "id": "@TOMM.ID",
+        "name": "用户名",
+        "val": "",
+        "type": "text",
+        "placeholder": "(点击以展开说明)",
+        "desc": "输入用户名(账号)"
+      }, {
+        "id": "@TOMM.PW",
+        "name": "用户密码",
+        "val": "",
+        "type": "text",
+        "placeholder": "",
+        "desc": "输入用户密码"
+      }],
+      "script": "https://raw.githubusercontent.com/NobyDa/Script/master/Bahamut/BahamutDailyBonus.js",
+      "author": "@TommyLee",
+      "repo": "https://github.com/NobyDa/Script/blob/master/Bahamut/BahamutDailyBonus.js",
+      "icons": ["https://raw.githubusercontent.com/NobyDa/mini/master/Alpha/bahamutGame.png", "https://raw.githubusercontent.com/NobyDa/mini/master/Color/bahamutGame.png"]
+    }],
+    "task": [{
+      "config": "0 8 * * * https://raw.githubusercontent.com/NobyDa/Script/master/Bahamut/BahamutDailyBonus.js, tag=巴哈姆特签到, img-url=https://raw.githubusercontent.com/NobyDa/mini/master/Color/bahamutGame.png"
+    }]
+  }
+  
