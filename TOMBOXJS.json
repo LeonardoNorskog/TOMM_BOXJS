@@ -4,13 +4,13 @@
     "description": "该订阅兼容BoxJs以及QX Gallery",
     "author": "@TommyLee",
     "icon": "https://avatars2.githubusercontent.com/u/53217160",
-    "repo": "https://github.com/NobyDa/Script/tree/master",
+    "repo": "https://github.com/LeonardoNorskog/TOMM_BOXJS/blob/main/sign.js",
     "apps": [{
-      "id": "Bahamut",
-      "name": "巴哈姆特",
+      "id": "",
+      "name": "签到",
       "keys": ["@TOMM.ID", "@TOMM.PW"],
       "descs_html": [
-        "<h4 align=\"center\">脚本配置请查看<a href=\"https://raw.githubusercontent.com/NobyDa/Script/master/Bahamut/BahamutDailyBonus.js\">脚本注释</a></h4>"
+        "<h4 align=\"center\">脚本配置请查看<a href=\"https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/sign.js\">脚本注释</a></h4>"
       ],
       "settings": [{
         "id": "@TOMM.ID",
@@ -27,13 +27,13 @@
         "placeholder": "",
         "desc": "输入用户密码"
       }],
-      "script": "https://raw.githubusercontent.com/NobyDa/Script/master/Bahamut/BahamutDailyBonus.js",
+      "script": "https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/sign.js",
       "author": "@TommyLee",
-      "repo": "https://github.com/NobyDa/Script/blob/master/Bahamut/BahamutDailyBonus.js",
-      "icons": ["https://raw.githubusercontent.com/NobyDa/mini/master/Alpha/bahamutGame.png", "https://raw.githubusercontent.com/NobyDa/mini/master/Color/bahamutGame.png"]
+      "repo": "https://github.com/LeonardoNorskog/TOMM_BOXJS/blob/main/sign.js",
+      "icons": ["https://avatars2.githubusercontent.com/u/53217160"]
     }],
     "task": [{
-      "config": "0 8 * * * https://raw.githubusercontent.com/NobyDa/Script/master/Bahamut/BahamutDailyBonus.js, tag=巴哈姆特签到, img-url=https://raw.githubusercontent.com/NobyDa/mini/master/Color/bahamutGame.png"
+      "config": "0 8 * * * https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/sign.js, tag=签到, img-url=https://avatars2.githubusercontent.com/u/53217160"
     }]
   }
   
