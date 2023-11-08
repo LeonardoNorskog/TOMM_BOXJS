@@ -24,7 +24,7 @@ if (typeof $request !== 'undefined') {
 
   function GetCookie() {
     const req = JSON.stringify($request);
-    console.log = req;
+    console.log(req);
     $.done()
   }
 
