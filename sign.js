@@ -1,3 +1,5 @@
+
+
 // const $ = new Env('小懒工具箱签到');
 
 // 用户名
@@ -29,12 +31,12 @@ if (typeof $request !== 'undefined') {
 
 function GetCookie(oldToken) {
   const req = JSON.stringify($request);
-  if (!req.includes(`https://wxapp.xiaolankj.top`)) {
+  if (!req.includes(`act=`)) {
     $.log($.name, `非${$.name}客户端URL请求，跳过脚本 ⚠️`);
   } else {
-    const cookieValue = $request.headers['token'];
+    const cookieValue = $request.headers.token;
     const setCookie = $.setdata(cookieValue, `@TOMM.TK`);
-    if (oldCookie) {
+    if (oldToken) {
       $.log($.name, `更新Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
     } else {
       $.msg($.name, ``, `获取Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
@@ -42,17 +44,6 @@ function GetCookie(oldToken) {
   }
   $.done()
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
