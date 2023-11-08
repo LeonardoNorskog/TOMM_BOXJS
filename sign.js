@@ -1,15 +1,32 @@
 const $ = new Env('签到');
 
 // 用户名
-$.uid = $.getdata('@@TOMM.ID') || 'YourUserName';
+$.uid = '';
 
 // 用户密码
-$.pwd = $.getdata('@@TOMM.PW') || 'YourUserPassword';
+$.pwd = '';
+
+
+//抓包获取的Token
+
+// $.token = $.getdata('@TOMM.TK') || 'YourToken'
+
+$.token = ''
+
+if (typeof $request !== 'undefined') {
+    GetCookie()
+  
+  }
 
 
 
 
 
+  function GetCookie() {
+    const req = JSON.stringify($request);
+    console.log = req;
+    $.done()
+  }
 
 
 
