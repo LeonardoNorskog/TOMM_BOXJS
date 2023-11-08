@@ -1,21 +1,20 @@
-const $ = new Env('签到');
+// const $ = new Env('签到');
 
-// 用户名
-$.uid = '';
+// // 用户名
+// $.uid = '';
 
-// 用户密码
-$.pwd = '';
+// // 用户密码
+// $.pwd = '';
 
 
-//抓包获取的Token
+// //抓包获取的Token
 
-// $.token = $.getdata('@TOMM.TK') || 'YourToken'
+// // $.token = $.getdata('@TOMM.TK') || 'YourToken'
 
-$.token = ''
+// $.token = ''
 
 if (typeof $request !== 'undefined') {
     GetCookie()
-  
   }
 
 
