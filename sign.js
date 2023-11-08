@@ -3,10 +3,10 @@
 // const $ = new Env('小懒工具箱签到');
 
 // 用户名
-const uid = '';
+//const uid = '';
 
 // 用户密码
-const pwd = '';
+//const pwd = '';
 
 
 // 抓包获取的Token
@@ -30,6 +30,7 @@ if (typeof $request !== 'undefined') {
 
 
 function GetCookie(oldToken) {
+  $.log('我执行了');
   const req = JSON.stringify($request);
   if (!req.includes(`act=`)) {
     $.log($.name, `非${$.name}客户端URL请求，跳过脚本 ⚠️`);
