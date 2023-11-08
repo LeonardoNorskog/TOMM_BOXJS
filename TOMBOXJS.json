@@ -10,7 +10,7 @@
       "name": "签到",
       "keys": ["@TOMM.TK"],
       "descs_html": [
-        "<h4 align=\"center\">脚本配置请查看<a href= "https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/sign.js\">脚本注释</a ></h4>"
+        "<h4 align=\"center\">脚本配置请查看<a href= \"https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/sign.js\">脚本注释</a ></h4>"
       ],
       "settings": [
      {
