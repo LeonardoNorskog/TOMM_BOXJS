@@ -1,4 +1,4 @@
-// const $ = new Env('签到');
+// const $ = new Env('小懒工具箱签到');
 
 // 用户名
 const uid = '';
@@ -9,14 +9,14 @@ const pwd = '';
 
 // 抓包获取的Token
 
-$.token = $.getdata('@TOMM.TK') || 'YourToken'
+const token = $.getdata('@TOMM.TK') || 'YourToken'
 
 
 
 if (typeof $request !== 'undefined') {
-    GetCookie()
+    GetCookie(token)
   }
-
+  
 
 
 
@@ -29,13 +29,11 @@ if (typeof $request !== 'undefined') {
 
 function GetCookie(oldToken) {
   const req = JSON.stringify($request);
-  if (!req.includes(`_comic`)) {
+  if (!req.includes(`https://wxapp.xiaolankj.top`)) {
     $.log($.name, `非${$.name}客户端URL请求，跳过脚本 ⚠️`);
-  } else if (!req.includes(`SESSDATA=`)) {
-    $.msg($.name, ``, `获取Cookie失败，关键值缺失 ⚠️`);
   } else {
-    const cookieValue = req.split(/(SESSDATA=.+?;)/)[1];
-    const setCookie = $.setdata(cookieValue, `CookieBM`);
+    const cookieValue = $request.headers['token'];
+    const setCookie = $.setdata(cookieValue, `@TOMM.TK`);
     if (oldCookie) {
       $.log($.name, `更新Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
     } else {
