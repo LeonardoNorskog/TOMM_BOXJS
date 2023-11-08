@@ -8,25 +8,11 @@
     "apps": [{
       "id": "sign",
       "name": "签到",
-      "keys": ["@TOMM.ID", "@TOMM.PW"],
+      "keys": ["@TOMM.TK"],
       "descs_html": [
-        "<h4 align=\"center\">脚本配置请查看<a href=\"https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/sign.js\">脚本注释</a></h4>"
+        "<h4 align=\"center\">脚本配置请查看<a href= "https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/sign.js\">脚本注释</a ></h4>"
       ],
-      "settings": [{
-        "id": "@TOMM.ID",
-        "name": "账号",
-        "val": "",
-        "type": "text",
-        "placeholder": "(点击以展开说明)",
-        "desc": "账号"
-      }, {
-        "id": "@TOMM.PW",
-        "name": "密码",
-        "val": "",
-        "type": "text",
-        "placeholder": "",
-        "desc": "密码"
-      },
+      "settings": [
      {
       "id": "@TOMM.TK",
       "name": "token",
