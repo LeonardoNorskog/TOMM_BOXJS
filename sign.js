@@ -36,7 +36,7 @@ function GetCookie(oldToken) {
   } else {
     const cookieValue = $request.headers.token;
     const setCookie = $.setdata(cookieValue, `@TOMM.TK`);
-    if (oldCookie) {
+    if (oldToken) {
       $.log($.name, `更新Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
     } else {
       $.msg($.name, ``, `获取Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
