@@ -1,31 +1,23 @@
 // const $ = new Env('签到');
 
-// // 用户名
-// $.uid = '';
+// 用户名
+const uid = '';
 
-// // 用户密码
-// $.pwd = '';
+// 用户密码
+const pwd = '';
 
 
-// //抓包获取的Token
+// 抓包获取的Token
 
-// // $.token = $.getdata('@TOMM.TK') || 'YourToken'
+$.token = $.getdata('@TOMM.TK') || 'YourToken'
 
-// $.token = ''
+
 
 if (typeof $request !== 'undefined') {
     GetCookie()
   }
 
 
-
-
-
-  function GetCookie() {
-    const req = JSON.stringify($request);
-    $.log(req);
-    $.done()
-  }
 
 
 //我是一个测试的注释
@@ -35,7 +27,23 @@ if (typeof $request !== 'undefined') {
 
 
 
-
+function GetCookie(oldToken) {
+  const req = JSON.stringify($request);
+  if (!req.includes(`_comic`)) {
+    $.log($.name, `非${$.name}客户端URL请求，跳过脚本 ⚠️`);
+  } else if (!req.includes(`SESSDATA=`)) {
+    $.msg($.name, ``, `获取Cookie失败，关键值缺失 ⚠️`);
+  } else {
+    const cookieValue = req.split(/(SESSDATA=.+?;)/)[1];
+    const setCookie = $.setdata(cookieValue, `CookieBM`);
+    if (oldCookie) {
+      $.log($.name, `更新Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+    } else {
+      $.msg($.name, ``, `获取Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+    }
+  }
+  $.done()
+}
 
 
 
