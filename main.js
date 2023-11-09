@@ -23,7 +23,11 @@ function sign() {
         chavy.msg(title, subTitle, detail)
     }
     chavy.log(`${cookieName}, data: ${data}`)
+
+    chavy.done()
+
   })
+
 }
 
 
