@@ -25,10 +25,6 @@ if (typeof $request !== 'undefined') {
 //我是一个测试的注释
 
 
-
-
-
-
 function GetCookie(oldToken) {
   $.log('我执行了');
   const req = JSON.stringify($request);
