@@ -20,11 +20,6 @@ if (typeof $request !== 'undefined') {
   }
   
 
-
-
-//我是一个测试的注释测试git  。。。。   111
-//我是一个测试的注释测试git  。。。。
-
 function GetCookie(oldToken) {
   $.log('我执行了');
   const req = JSON.stringify($request);
