@@ -63,17 +63,20 @@ function checkin() {
 
 function GetCookie(oldToken) {
   const req = JSON.stringify($request);
-  if (!req.includes('act=userCheckIn')) {
-    $.log($.name, `非${$.name}客户端URL请求，跳过脚本 ⚠️`);
-  } else {
-    const cookieValue = $request.headers['token'];
-    const setCookie = $.setdata(cookieValue, `tl_sign`);
-    if (oldToken) {
-      $.log($.name, `更新Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
-    } else {
-      $.msg($.name, ``, `获取Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
-    }
-  }
+
+  if (req.includes('userCheckIn')) {
+    $.log($.name, $request)
+    // $.msg($.name,`` ,`非${$.name}客户端URL请求，跳过脚本 ⚠️`)
+    // $.log($.name, `非${$.name}客户端URL请求，跳过脚本 ⚠️`);
+  // } else {
+  //   const cookieValue = $request.headers['token'];
+  //   const setCookie = $.setdata(cookieValue, `tl_sign`);
+  //   if (oldToken) {
+  //     $.log($.name, `更新Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+  //   } else {
+  //     $.msg($.name, ``, `获取Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+  //   }
+  // }
   $.done()
 }
 
