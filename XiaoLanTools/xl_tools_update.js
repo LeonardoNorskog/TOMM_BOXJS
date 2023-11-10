@@ -61,21 +61,34 @@ function checkin() {
   })
 }
 
-function GetCookie() {
+function GetCookie(oldToken) {
   const req = JSON.stringify($request);
-  $.msg($.name, '', req)
-  $.log($.name, req)
-  if (req.includes('userCheckIn')){
-    $.msg($.name, '', $request.headers['token'])
-  }
 
-  // if (req.includes('userCheckIn')) {
-  //   $.log($.name, req)
-  //   // $.msg($.name,`` ,`非${$.name}客户端URL请求，跳过脚本 ⚠️`)
-  //   // $.log($.name, `非${$.name}客户端URL请求，跳过脚本 ⚠️`);
-  // }
+  if (req.includes('userCheckIn')){
+    $.log($.name, $request.headers['token'])
+    $.msg($.name, '', $request.headers['token'])
+    //设置token
+    const cookieValue = $request.headers['token'];
+    const setCookie = $.setdata(cookieValue, `tl_sign`);
+    if (oldToken) {
+      $.log($.name, `更新Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+    } else {
+      $.msg($.name, ``, `获取Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+    }
+  }
   $.done()
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
