@@ -24,12 +24,12 @@ const token = $.getdata("tl_sign") || '';
 const barkKey = ''; //Bark APP 通知推送Key
 
 if (typeof $request !== 'undefined') {
-  GetCookie()
+  GetCookie(token)
 } else if (!token) {
   $.msg($.name, ``, `签到token失效/未获取 ⚠️`);
   $.done();
 } else {
-  //checkin()
+  checkin()
 }
 
 function checkin() {
@@ -43,15 +43,8 @@ function checkin() {
   $.get(xiaolanTools, async function (error, response, data) {
     if (error && !data) {
       $.msgBody = `请求失败!\n${error}`;
-    } else if (parseInt(response.status) == 200) {
-      $.msgBody = "签到成功！🎉";
-    } else if (/duplicate/.test(data)) {
-      $.msgBody = "签到失败，今日已签过 ⚠️";
-    } else if (/uid must/.test(data)) {
-      $.msgBody = "签到失败，Cookie失效（已清除） ⚠️";
-      $.setdata("", "CookieBM");
-    } else {
-      $.msgBody = `签到失败 ‼️\n${data}`;
+    } else if (parseInt(response.status) === 200) {
+      $.msgBody = `${data.msg}`;
     }
     if (barkKey) {
       await BarkNotify($, barkKey, $.name, $.msgBody);
@@ -71,9 +64,9 @@ function GetCookie(oldToken) {
     const cookieValue = $request.headers['token'];
     const setCookie = $.setdata(cookieValue, `tl_sign`);
     if (oldToken) {
-      $.log($.name, `更新Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+      $.log($.name, `更新Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
     } else {
-      $.msg($.name, ``, `获取Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+      $.msg($.name, ``, `获取Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
     }
   }
   $.done()
