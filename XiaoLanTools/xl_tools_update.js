@@ -24,7 +24,7 @@ const token = $.getdata("tl_sign") || '';
 const barkKey = ''; //Bark APP 通知推送Key
 
 if (typeof $request !== 'undefined') {
-  GetCookie(token)
+  GetCookie()
 } else if (!token) {
   $.msg($.name, ``, `签到token失效/未获取 ⚠️`);
   $.done();
@@ -61,14 +61,16 @@ function checkin() {
   })
 }
 
-function GetCookie(oldToken) {
+function GetCookie() {
   const req = JSON.stringify($request);
+  $.msg($.name, '', req)
 
-  if (req.includes('userCheckIn')) {
-    $.log($.name, req)
-    // $.msg($.name,`` ,`非${$.name}客户端URL请求，跳过脚本 ⚠️`)
-    // $.log($.name, `非${$.name}客户端URL请求，跳过脚本 ⚠️`);
-  }
+
+  // if (req.includes('userCheckIn')) {
+  //   $.log($.name, req)
+  //   // $.msg($.name,`` ,`非${$.name}客户端URL请求，跳过脚本 ⚠️`)
+  //   // $.log($.name, `非${$.name}客户端URL请求，跳过脚本 ⚠️`);
+  // }
   $.done()
 }
 
