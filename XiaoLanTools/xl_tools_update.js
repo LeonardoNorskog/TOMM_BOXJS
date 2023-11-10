@@ -41,10 +41,11 @@ function checkin() {
     }
   };
   $.get(xiaolanTools, async function (error, response, data) {
-    if (error && !data) {
-      $.msgBody = `请求失败!\n${error}`;
-    } else if (parseInt(response.status) === 200) {
-      $.msgBody = `${data.msg}`;
+
+    const result = JSON.parse(data)
+
+    if (result.code === 2) {
+      $.msgBody = `${result.msg}`;
     }
     if (barkKey) {
       await BarkNotify($, barkKey, $.name, $.msgBody);
