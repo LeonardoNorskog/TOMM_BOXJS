@@ -63,7 +63,7 @@ function checkin() {
 
 function GetCookie(oldToken) {
   const req = JSON.stringify($request);
-  if (!req.includes(`act=`)) {
+  if (!req.includes('act=userCheckIn')) {
     $.log($.name, `非${$.name}客户端URL请求，跳过脚本 ⚠️`);
   } else {
     const cookieValue = $request.headers['token'];
