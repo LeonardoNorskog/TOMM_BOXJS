@@ -1,5 +1,22 @@
-
-
+/*
+*
+*
+* 说明：
+*打开小懒工具箱小程序后，单击"赚金币"，"立即签到", 如果通知获取token成功, 则可以使用此脚本.
+*脚本将在每天0点20执行。 您可以修改执行时间。
+*
+* QX 1.0.10+ :
+*
+* [task_local]
+*20 0 * * * https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/XiaoLanTools/xl_tools_update.js, tag=小懒工具箱签到
+*
+*[rewrite_local]
+* 获取token
+* ^https:\/\/wxapp\.xiaolankj\.top\/api\/app\/user\.php\?act\=userCheckIn url script-request-header https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/XiaoLanTools/xl_tools_update.js
+*
+*
+*
+* */
 const $ = new Env(`小懒工具箱`);
 
 const token = $.getdata("tl_sign") || '';
@@ -12,7 +29,7 @@ if (typeof $request !== 'undefined') {
   $.msg($.name, ``, `签到token失效/未获取 ⚠️`);
   $.done();
 } else {
-  checkin()
+  //checkin()
 }
 
 function checkin() {
