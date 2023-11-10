@@ -65,7 +65,7 @@ function GetCookie(oldToken) {
   const req = JSON.stringify($request);
 
   if (req.includes('userCheckIn')) {
-    $.log($.name, $request)
+    $.log($.name, req)
     // $.msg($.name,`` ,`非${$.name}客户端URL请求，跳过脚本 ⚠️`)
     // $.log($.name, `非${$.name}客户端URL请求，跳过脚本 ⚠️`);
   }
