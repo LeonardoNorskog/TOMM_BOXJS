@@ -1,5 +1,22 @@
-
-
+/*
+*
+*
+* 说明：
+*打开小懒工具箱小程序后，单击"赚金币"，"立即签到", 如果通知获取token成功, 则可以使用此脚本.
+*脚本将在每天0点20执行。 您可以修改执行时间。
+*
+* QX 1.0.10+ :
+*
+* [task_local]
+*20 0 * * * https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/XiaoLanTools/xl_tools_update.js, tag=小懒工具箱签到
+*
+*[rewrite_local]
+* 获取token
+* ^https:\/\/wxapp\.xiaolankj\.top\/api\/app\/user\.php\?act\=userCheckIn url script-request-header https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/XiaoLanTools/xl_tools_update.js
+*
+*
+*
+* */
 const $ = new Env(`小懒工具箱`);
 
 const token = $.getdata("tl_sign") || '';
@@ -24,17 +41,11 @@ function checkin() {
     }
   };
   $.get(xiaolanTools, async function (error, response, data) {
-    if (error && !data) {
-      $.msgBody = `请求失败!\n${error}`;
-    } else if (parseInt(response.status) == 200) {
-      $.msgBody = "签到成功！🎉";
-    } else if (/duplicate/.test(data)) {
-      $.msgBody = "签到失败，今日已签过 ⚠️";
-    } else if (/uid must/.test(data)) {
-      $.msgBody = "签到失败，Cookie失效（已清除） ⚠️";
-      $.setdata("", "CookieBM");
-    } else {
-      $.msgBody = `签到失败 ‼️\n${data}`;
+
+    const result = JSON.parse(data)
+
+    if (result.code === 2) {
+      $.msgBody = `${result.msg}`;
     }
     if (barkKey) {
       await BarkNotify($, barkKey, $.name, $.msgBody);
@@ -46,19 +57,34 @@ function checkin() {
 
 function GetCookie(oldToken) {
   const req = JSON.stringify($request);
-  if (!req.includes(`act=getUserInfo`)) {
-    $.log($.name, `非${$.name}客户端URL请求，跳过脚本 ⚠️`);
-  } else {
+
+  if (req.includes('userCheckIn')){
+    $.log($.name, $request.headers['token'])
+    $.msg($.name, '', $request.headers['token'])
+    //设置token
     const cookieValue = $request.headers['token'];
     const setCookie = $.setdata(cookieValue, `tl_sign`);
     if (oldToken) {
-      $.log($.name, `更新Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+      $.log($.name, `更新Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
     } else {
-      $.msg($.name, ``, `获取Cookie${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+      $.msg($.name, ``, `获取Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
     }
   }
   $.done()
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Bark APP notify
 async function BarkNotify(c, k, t, b) { for (let i = 0; i < 3; i++) { console.log(`🔷Bark notify >> Start push (${i + 1})`); const s = await new Promise((n) => { c.post({ url: 'https://api.day.app/push', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ title: t, body: b, device_key: k, ext_params: { group: t } }) }, (e, r, d) => r && r.status == 200 ? n(1) : n(d || e)) }); if (s === 1) { console.log('✅Push success!'); break } else { console.log(`❌Push failed! >> ${s.message || s}`) } } };
