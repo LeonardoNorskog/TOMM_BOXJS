@@ -64,6 +64,7 @@ function checkin() {
 function GetCookie() {
   const req = JSON.stringify($request);
   $.msg($.name, '', req)
+  $.log($.name, req)
 
 
   // if (req.includes('userCheckIn')) {
