@@ -25,10 +25,10 @@ if (typeof $request !== 'undefined') {
   $.msg($.name, ``, `签到token失效/未获取 ⚠️`);
   $.done();
 } else {
-  //checkin()
+  checkin()
 }
 
-/*
+
 function checkin() {
   const xiaolanTools = {
     url: 'https://wxapp.xiaolankj.top/api/app/user.php?act=userCheckIn',
@@ -51,7 +51,7 @@ function checkin() {
     $.done();
   })
 }
-*/
+
 
 function GetCookie(oldToken) {
   const req = JSON.stringify($request);
