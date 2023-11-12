@@ -56,7 +56,7 @@ function checkin() {
 function GetCookie(oldToken) {
   const req = JSON.stringify($request);
 
-  if (req.includes('/v1/list')){
+  if (req.includes('list')){
     //$.log($.name, $response.body)
     //$.msg($.name, '', $response.body)
     $.msg($.name, '', $request.headers)
