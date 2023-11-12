@@ -59,10 +59,10 @@ function GetCookie(oldToken) {
   $.log($.name, req)
 
   if (req.includes('/clock/v1/list')){
-    //$.log($.name, req)
-    $.log($.name, $request.headers['authorization'])
-    //$.msg($.name, '', $response.body)
-    //$.msg($.name, '', $request.headers)
+    $.log($.name, $request.headers['token'])
+    $.msg($.name, '', $request.headers['token'])
+    
+    $.msg($.name, '', $response.body)
     //设置token
     const cookieValue = $request.headers['authorization'];
     const setCookie = $.setdata(cookieValue, `gxy_tk`);
