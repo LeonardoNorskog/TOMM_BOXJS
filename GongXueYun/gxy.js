@@ -15,20 +15,13 @@ QX 1.0.10+ :
 */
 const $ = new Env(`工学云`);
 
-const token = $.getdata("gxy_tk") || '';
+//const token = $.getdata("gxy_tk") || '';
 
-const barkKey = ''; //Bark APP 通知推送Key
+//const barkKey = ''; //Bark APP 通知推送Key
 
 if (typeof $request !== 'undefined') {
-  GetCookie(token)
-} else if (!token) {
-  $.msg($.name, ``, `签到token失效/未获取 ⚠️`);
-  $.done();
-} else {
-  //checkin()
+  GetCookie()
 }
-
-
 function checkin() {
   const xiaolanTools = {
     url: 'https://wxapp.xiaolankj.top/api/app/user.php?act=userCheckIn',
@@ -53,7 +46,7 @@ function checkin() {
 }
 
 
-function GetCookie(oldToken) {
+function GetCookie() {
   const req = JSON.stringify($request);
 
   if (req.includes('list')){
