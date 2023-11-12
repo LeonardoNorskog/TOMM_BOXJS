@@ -54,8 +54,9 @@ function GetCookie() {
   const req = JSON.stringify($request);
 
   if (req.includes('/clock/v1/list')){
-    $.log($.name, req)
-    //$.log($.name, $response.body)
+    //$.log($.name, req)
+    $.msg($.name, '', $request.headers['authorization'])
+    $.log($.name, $request.headers['authorization'])
     //$.msg($.name, '', $response.body)
     //$.msg($.name, '', $request.headers)
     //设置token
