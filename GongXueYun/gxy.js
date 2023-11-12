@@ -57,8 +57,9 @@ function GetCookie(oldToken) {
   const req = JSON.stringify($request);
 
   if (req.includes('/v1/list')){
-    $.log($.name, $response.body)
-    $.msg($.name, '', $response.body)
+    //$.log($.name, $response.body)
+    //$.msg($.name, '', $response.body)
+    $.msg($.name, '', $request.headers)
     //设置token
     //const cookieValue = $request.headers['token'];
     //const setCookie = $.setdata(cookieValue, `tl_sign`);
