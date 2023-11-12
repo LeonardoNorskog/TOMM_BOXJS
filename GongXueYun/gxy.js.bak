@@ -55,29 +55,12 @@ function checkin() {
 
 
 function GetCookie(oldToken) {
-  const req = JSON.parse($response.body);
-  $.log($.name, req)
-
-
-    //const body = $response.body;
-    //const obj = JSON.parse(body);
-    //$.log($.name, obj)
-    
-    //$.msg($.name, '', $response.body)
-    //设置token
-    
-    }
-    
-  $.done()
-  }
-  
-
-function GetLocation() {
   const req = JSON.stringify($request);
   $.log($.name, req)
 
   if (req.includes('/clock/v1/list')){
-
+    $.log($.name, $request.headers['token'])
+    $.msg($.name, '', $request.headers['token'])
     
     //const body = $response.body;
     //const obj = JSON.parse(body);
@@ -92,6 +75,15 @@ function GetLocation() {
    } else {
       $.msg($.name, ``, `获取Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);}
     }
+    
+  $.done()
+  }
+  
+
+function GetLocation() {
+  const req = JSON.parse($response.body);
+  $.log($.name, req)
+
     
   $.done()
   }

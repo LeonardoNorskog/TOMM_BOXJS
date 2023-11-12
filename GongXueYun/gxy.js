@@ -21,7 +21,8 @@ const token = $.getdata("gxy_tk") || '';
 //const barkKey = ''; //Bark APP 通知推送Key
 
 if (typeof $request !== 'undefined') {
-  GetCookie(token)
+  //GetCookie(token)
+  GetLocation()
 } else if (!token) {
   $.msg($.name, ``, `签到token失效/未获取 ⚠️`);
   $.done();
