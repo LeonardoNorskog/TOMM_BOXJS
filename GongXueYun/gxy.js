@@ -53,7 +53,7 @@ function checkin() {
 function GetCookie() {
   const req = JSON.stringify($request);
 
-  if (req.includes('/list')){
+  if (req.includes('/clock/v1/list')){
     $.log($.name, req)
     //$.log($.name, $response.body)
     //$.msg($.name, '', $response.body)
