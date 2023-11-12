@@ -66,9 +66,11 @@ function GetCookie() {
    // } else {
       //$.msg($.name, ``, `获取Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
     }
+    
+   $.done()
   }
-  $.done()
-}
+  
+
 
 
 
