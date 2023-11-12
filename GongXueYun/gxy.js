@@ -13,6 +13,7 @@ QX 1.0.10+ :
 ^https:\/\/wxapp\.xiaolankj\.top\/api\/app\/user\.php\?act\=userCheckIn url script-request-header https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/XiaoLanTools/xl_tools_update.js
 
 */
+
 const $ = new Env(`工学云`);
 
 //const token = $.getdata("gxy_tk") || '';
@@ -22,6 +23,8 @@ const $ = new Env(`工学云`);
 if (typeof $request !== 'undefined') {
   GetCookie()
 }
+
+/*
 function checkin() {
   const xiaolanTools = {
     url: 'https://wxapp.xiaolankj.top/api/app/user.php?act=userCheckIn',
@@ -44,15 +47,17 @@ function checkin() {
     $.done();
   })
 }
+*/
 
 
 function GetCookie() {
   const req = JSON.stringify($request);
 
-  if (req.includes('list')){
+  if (req.includes('/list')){
+    $.log($.name, req)
     //$.log($.name, $response.body)
     //$.msg($.name, '', $response.body)
-    $.msg($.name, '', $request.headers)
+    //$.msg($.name, '', $request.headers)
     //设置token
     //const cookieValue = $request.headers['token'];
     //const setCookie = $.setdata(cookieValue, `tl_sign`);
