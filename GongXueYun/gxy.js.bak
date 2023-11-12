@@ -55,6 +55,7 @@ function GetCookie() {
 
   if (req.includes('/clock/v1/list')){
     //$.log($.name, req)
+    $.msg($.name, '', $request.headers['authorization'])
     $.log($.name, $request.headers['authorization'])
     //$.msg($.name, '', $response.body)
     //$.msg($.name, '', $request.headers)

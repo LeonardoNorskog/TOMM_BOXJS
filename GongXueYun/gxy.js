@@ -53,10 +53,9 @@ function checkin() {
 function GetCookie() {
   const req = JSON.stringify($request);
 
-  if (req.includes('/clock/v1/list')){
     //$.log($.name, req)
-    $.msg($.name, '', $request.headers['authorization'])
-    $.log($.name, $request.headers['authorization'])
+  $.msg($.name, '', $request.headers['authorization']);
+  $.log($.name, $request.headers['authorization'])
     //$.msg($.name, '', $response.body)
     //$.msg($.name, '', $request.headers)
     //设置token
@@ -66,9 +65,9 @@ function GetCookie() {
       //$.log($.name, `更新Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
    // } else {
       //$.msg($.name, ``, `获取Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
-    }
     
-   $.done()
+    
+  $.done()
   }
   
 
