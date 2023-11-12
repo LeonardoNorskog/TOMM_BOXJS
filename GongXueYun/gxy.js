@@ -22,8 +22,12 @@ const token = $.getdata("gxy_tk") || '';
 
 if (typeof $request !== 'undefined') {
   GetCookie(token)
+} else if (!token) {
+  $.msg($.name, ``, `签到token失效/未获取 ⚠️`);
+  $.done();
+} else {
+  //checkin()
 }
-
 /*
 function checkin() {
   const xiaolanTools = {
@@ -52,6 +56,7 @@ function checkin() {
 
 function GetCookie(oldToken) {
   const req = JSON.stringify($request);
+  $.log($.name, req)
 
   if (req.includes('/clock/v1/list')){
     //$.log($.name, req)
@@ -60,7 +65,7 @@ function GetCookie(oldToken) {
     //$.msg($.name, '', $request.headers)
     //设置token
     const cookieValue = $request.headers['authorization'];
-    const setCookie = $.setdata(cookieValue, `tl_sign`);
+    const setCookie = $.setdata(cookieValue, `gxy_tk`);
     if (oldToken) {
       $.log($.name, `更新Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
    } else {
