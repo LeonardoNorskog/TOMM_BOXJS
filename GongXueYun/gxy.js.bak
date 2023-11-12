@@ -18,10 +18,12 @@ const $ = new Env(`工学云`);
 
 const token = $.getdata("gxy_tk") || '';
 
+const location = $.getdata
+
 //const barkKey = ''; //Bark APP 通知推送Key
 
 if (typeof $request !== 'undefined') {
-  //GetCookie(token)
+  GetCookie(token)
   GetLocation()
 } else if (!token) {
   $.msg($.name, ``, `签到token失效/未获取 ⚠️`);
@@ -83,7 +85,7 @@ function GetCookie(oldToken) {
 
 function GetLocation() {
   const req = JSON.parse($response.body);
-  $.log($.name, req['data'])
+  $.log($.name, req['data'][0]['address'])
 
     
   $.done()

@@ -18,11 +18,13 @@ const $ = new Env(`工学云`);
 
 const token = $.getdata("gxy_tk") || '';
 
+const location = $.getdata("gxy_address") || '';
+
 //const barkKey = ''; //Bark APP 通知推送Key
 
 if (typeof $request !== 'undefined') {
-  //GetCookie(token)
-  GetLocation()
+  GetCookie(token)
+  GetLocation(location)
 } else if (!token) {
   $.msg($.name, ``, `签到token失效/未获取 ⚠️`);
   $.done();
@@ -81,9 +83,21 @@ function GetCookie(oldToken) {
   }
   
 
-function GetLocation() {
+function GetLocation(oldAddR) {
   const req = JSON.parse($response.body);
-  $.log($.name, req['data'][0]['address'])
+  
+  
+  const addressValue = req['data'][0]['address']
+  $.msg($.name, '', addressValue)
+  $.log($.name, addressValue)
+  
+  const setAddress = $.setdata(addressValue, `gxy_address`)
+  
+  if (oldAddR) {
+      $.log($.name, `更新位置${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+   } else {
+      $.msg($.name, ``, `获取位置${setCookie ? `成功 🎉` : `失败 ⚠️`}`);}
+    }
 
     
   $.done()
