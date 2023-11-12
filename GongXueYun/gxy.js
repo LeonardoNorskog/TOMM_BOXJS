@@ -16,12 +16,12 @@ QX 1.0.10+ :
 
 const $ = new Env(`工学云`);
 
-//const token = $.getdata("gxy_tk") || '';
+const token = $.getdata("gxy_tk") || '';
 
 //const barkKey = ''; //Bark APP 通知推送Key
 
 if (typeof $request !== 'undefined') {
-  GetCookie()
+  GetCookie(token)
 }
 
 /*
@@ -50,22 +50,22 @@ function checkin() {
 */
 
 
-function GetCookie() {
+function GetCookie(oldToken) {
   const req = JSON.stringify($request);
 
+  if (req.includes('/clock/v1/list')){
     //$.log($.name, req)
-  $.msg($.name, '', $request.headers['authorization']);
-  $.log($.name, $request.headers['authorization'])
+    $.log($.name, $request.headers['authorization'])
     //$.msg($.name, '', $response.body)
     //$.msg($.name, '', $request.headers)
     //设置token
-    //const cookieValue = $request.headers['token'];
-    //const setCookie = $.setdata(cookieValue, `tl_sign`);
-    //if (oldToken) {
-      //$.log($.name, `更新Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
-   // } else {
-      //$.msg($.name, ``, `获取Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
-    
+    const cookieValue = $request.headers['authorization'];
+    const setCookie = $.setdata(cookieValue, `tl_sign`);
+    if (oldToken) {
+      $.log($.name, `更新Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+   } else {
+      $.msg($.name, ``, `获取Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);}
+    }
     
   $.done()
   }
