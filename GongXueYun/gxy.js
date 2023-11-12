@@ -83,7 +83,7 @@ function GetCookie(oldToken) {
 
 function GetLocation() {
   const req = JSON.parse($response.body);
-  $.log($.name, req['data'])
+  $.log($.name, req['data'][0]['address'])
 
     
   $.done()
