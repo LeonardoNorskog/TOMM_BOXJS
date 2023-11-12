@@ -62,11 +62,11 @@ function GetCookie(oldToken) {
     $.log($.name, $request.headers['token'])
     $.msg($.name, '', $request.headers['token'])
     
-    const body = $response.body;
-    const obj = JSON.parse(body);
-    $.log($.name, obj)
+    //const body = $response.body;
+    //const obj = JSON.parse(body);
+    //$.log($.name, obj)
     
-    $.msg($.name, '', $response.body)
+    //$.msg($.name, '', $response.body)
     //设置token
     const cookieValue = $request.headers['authorization'];
     const setCookie = $.setdata(cookieValue, `gxy_tk`);
@@ -80,6 +80,14 @@ function GetCookie(oldToken) {
   }
   
 
+function GetLocation() {
+  const req = JSON.parse($response.body);
+  $.log($.name, req)
+
+    
+  $.done()
+  }
+  
 
 
 

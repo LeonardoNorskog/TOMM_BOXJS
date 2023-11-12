@@ -55,14 +55,35 @@ function checkin() {
 
 
 function GetCookie(oldToken) {
+  const req = JSON.parse($response.body);
+  $.log($.name, req)
+
+
+    //const body = $response.body;
+    //const obj = JSON.parse(body);
+    //$.log($.name, obj)
+    
+    //$.msg($.name, '', $response.body)
+    //设置token
+    
+    }
+    
+  $.done()
+  }
+  
+
+function GetLocation() {
   const req = JSON.stringify($request);
   $.log($.name, req)
 
   if (req.includes('/clock/v1/list')){
-    $.log($.name, $request.headers['token'])
-    $.msg($.name, '', $request.headers['token'])
+
     
-    $.msg($.name, '', $response.body)
+    //const body = $response.body;
+    //const obj = JSON.parse(body);
+    //$.log($.name, obj)
+    
+    //$.msg($.name, '', $response.body)
     //设置token
     const cookieValue = $request.headers['authorization'];
     const setCookie = $.setdata(cookieValue, `gxy_tk`);
@@ -75,7 +96,6 @@ function GetCookie(oldToken) {
   $.done()
   }
   
-
 
 
 
