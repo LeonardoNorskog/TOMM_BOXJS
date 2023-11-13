@@ -24,7 +24,6 @@ const token = $.getdata("gxy_tk") || '';
 
 if (typeof $request !== 'undefined') {
     GetCookie(token)
-    GetLocation(location)
 } else if (!token) {
     $.msg($.name, ``, `签到token失效/未获取 ⚠️`);
     $.done();

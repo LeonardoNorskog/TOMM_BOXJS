@@ -29,10 +29,9 @@ const latitude = $.getdata("gxy_latitude") ||'';
 //const barkKey = ''; //Bark APP 通知推送Key
 
 if (typeof $request !== 'undefined') {
-    GetCookie(token)
-    GetLocation(location)
-} else if (!token) {
-    $.msg($.name, ``, `签到token失效/未获取 ⚠️`);
+    GetLocation(location, longitude, latitude)
+} else if (!location) {
+    $.msg($.name, ``, `签到位置失效/未获取 ⚠️`);
     $.done();
 } else {
     //checkin()
@@ -62,13 +61,13 @@ function GetLocation(oldAddR, old_longitude, old_latitude) {
     if (old_longitude) {
         $.log($.name, `更新经度${setLongitude ? `成功 🎉` : `失败 ⚠️`}`);
     } else {
-        $.msg($.name, ``, `获取位置${setLongitude ? `成功 🎉` : `失败 ⚠️`}`);
+        $.msg($.name, ``, `获取经度${setLongitude ? `成功 🎉` : `失败 ⚠️`}`);
     }
 
     if (old_longitude) {
-        $.log($.name, `更新经度${setLatitude ? `成功 🎉` : `失败 ⚠️`}`);
+        $.log($.name, `更新纬度${setLatitude ? `成功 🎉` : `失败 ⚠️`}`);
     } else {
-        $.msg($.name, ``, `获取位置${setLatitude ? `成功 🎉` : `失败 ⚠️`}`);
+        $.msg($.name, ``, `获取纬度${setLatitude ? `成功 🎉` : `失败 ⚠️`}`);
     }
 
     $.done()
