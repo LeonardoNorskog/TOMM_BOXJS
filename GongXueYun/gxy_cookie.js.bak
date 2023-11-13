@@ -16,98 +16,68 @@ QX 1.0.10+ :
 
 const $ = new Env(`工学云`);
 
-// const token = $.getdata("gxy_tk") || '';
+const token = $.getdata("gxy_tk") || '';
+const sign = $.getdata("gxy_sign") || '';
 
-//获取签到地址
-const location = $.getdata("gxy_address") || '';
-//获取签到经度
-const longitude = $.getdata("gxy_longitude") || '';
-//获取签到维度
-const latitude = $.getdata("gxy_latitude") ||'';
-//获取签到省份
-const province = $.getdata("gxy_province") || '';
-//获取签到城市
-const city = $.getdata("gxy_city") || '';
-//获取签到城市
-
+// const location = $.getdata("gxy_address") || '';
 
 //const barkKey = ''; //Bark APP 通知推送Key
 
 if (typeof $request !== 'undefined') {
-    GetLocation(location, longitude, latitude, province. city)
-} else if (!location) {
-    $.msg($.name, ``, `签到位置失效/未获取 ⚠️`);
+    GetCookie(token)
+} else if (!token) {
+    $.msg($.name, ``, `签到token失效/未获取 ⚠️`);
     $.done();
 } else {
     //checkin()
 }
 
-
-function GetLocation(oldAddR, old_longitude, old_latitude, old_province, old_city) {
-    const req = JSON.parse($response.body);
-
-
-    const addressValue = req['data'][0]['address']
-    const longitudeValue = req['data'][0]['longitude']
-    const  latitudeValue = req['data'][0]['latitude']
-    
-    const  provinceValue = req['data'][0]['province']
-    
-    const  cityValue = req['data'][0]['city']
-    
-    
-    
-    //$.msg($.name, '', addressValue)
-    //$.log($.name, addressValue, longitudeValue, latitudeValue)
-
-    const setAddress = $.setdata(addressValue, `gxy_address`)
-    const setLongitude = $.setdata(longitudeValue, `gxy_longitude`)
-    const setLatitude = $.setdata(longitudeValue, `gxy_latitude`)
-    
-    const setProvince = $.setdata(provinceValue, `gxy_province`)
-    
-    const setCity = $.setdata(cityValue, `gxy_city`)
-    
-    
-
-    if (oldAddR) {
-        $.log($.name, `更新位置${setAddress ? `成功 🎉` : `失败 ⚠️`}`);
-    } else {
-        $.msg($.name, ``, `获取位置${setAddress ? `成功 🎉` : `失败 ⚠️`}`);
+/*
+function checkin() {
+  const xiaolanTools = {
+    url: 'https://wxapp.xiaolankj.top/api/app/user.php?act=userCheckIn',
+    headers: {
+      token: token,
+      "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.43(0x18002b29) NetType/WIFI Language/zh_CN"
     }
+  };
+  $.get(xiaolanTools, async function (error, response, data) {
 
-    if (old_longitude) {
-        $.log($.name, `更新经度${setLongitude ? `成功 🎉` : `失败 ⚠️`}`);
-    } else {
-        $.msg($.name, ``, `获取经度${setLongitude ? `成功 🎉` : `失败 ⚠️`}`);
-    }
+    const result = JSON.parse(data)
 
-    if (old_latitude) {
-        $.log($.name, `更新纬度${setLatitude ? `成功 🎉` : `失败 ⚠️`}`);
-    } else {
-        $.msg($.name, ``, `获取纬度${setLatitude ? `成功 🎉` : `失败 ⚠️`}`);
+    if (result.code === 2) {
+      $.msgBody = `${result.msg}`;
     }
-    
-    if (old_province) {
-        $.log($.name, `更新省份${setProvince ? `成功 🎉` : `失败 ⚠️`}`);
-    } else {
-        $.msg($.name, ``, `获取省份${setProvince ? `成功 🎉` : `失败 ⚠️`}`);
+    if (barkKey) {
+      await BarkNotify($, barkKey, $.name, $.msgBody);
     }
-    
-    if (old_city) {
-        $.log($.name, `更新城市${setCity ? `成功 🎉` : `失败 ⚠️`}`);
-    } else {
-        $.msg($.name, ``, `获取城市${setCity ? `成功 🎉` : `失败 ⚠️`}`);
-    }
+    $.msg($.name, ``, $.msgBody); 
+    $.done();
+  })
+}
+*/
 
+
+function GetCookie(oldToken) {
+    const req = JSON.stringify($request);
+    $.log($.name, req)
+
+    if (req.includes('/practice/plan/v3/getPlanByStu')) {
+        $.log($.name, $request.headers['token'])
+        $.msg($.name, '', $request.headers['token'])
+
+        //设置token
+        const cookieValue = $request.headers['authorization'];
+        const setCookie = $.setdata(cookieValue, `gxy_tk`);
+        if (oldToken) {
+            $.log($.name, `更新Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+        } else {
+            $.msg($.name, ``, `获取Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+        }
+    }
 
     $.done()
 }
-
-
-
-
-// github地址：
 function Env(t, e) {
     class s {
         constructor(t) {

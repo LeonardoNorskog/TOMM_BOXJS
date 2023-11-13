@@ -17,13 +17,14 @@ QX 1.0.10+ :
 const $ = new Env(`工学云`);
 
 const token = $.getdata("gxy_tk") || '';
+const sign = $.getdata("gxy_sign") || '';
 
 // const location = $.getdata("gxy_address") || '';
 
 //const barkKey = ''; //Bark APP 通知推送Key
 
 if (typeof $request !== 'undefined') {
-    GetCookie(token)
+    GetCookie(token, sign)
 } else if (!token) {
     $.msg($.name, ``, `签到token失效/未获取 ⚠️`);
     $.done();
@@ -57,22 +58,31 @@ function checkin() {
 */
 
 
-function GetCookie(oldToken) {
+function GetCookie(oldToken, oldSign) {
     const req = JSON.stringify($request);
     $.log($.name, req)
 
-    if (req.includes('/clock/v1/list')) {
-        $.log($.name, $request.headers['token'])
-        $.msg($.name, '', $request.headers['token'])
+    if (req.includes('/practice/plan/v3/getPlanByStu')) {
+        //$.log($.name, $request.headers['token'])
+        //$.msg($.name, '', $request.headers['token'])
 
-        //设置token
+        //设置token  sign
         const cookieValue = $request.headers['authorization'];
+        const signValue = $request.headers['sign'];
         const setCookie = $.setdata(cookieValue, `gxy_tk`);
+        const setSign = $.setdata(signValue, `gxy_sign`)
         if (oldToken) {
             $.log($.name, `更新Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
         } else {
             $.msg($.name, ``, `获取Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
         }
+        
+        if (oldSign) {
+            $.log($.name, `更新Sign${setSign ? `成功 🎉` : `失败 ⚠️`}`);
+        } else {
+            $.msg($.name, ``, `获取Sign${setSign ? `成功 🎉` : `失败 ⚠️`}`);
+        }
+        
     }
 
     $.done()

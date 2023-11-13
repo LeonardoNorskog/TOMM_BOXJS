@@ -16,9 +16,14 @@ QX 1.0.10+ :
 
 const $ = new Env(`工学云`);
 
-const token = $.getdata("gxy_tk") || '';
+const token = $.getdata("gxy_tk");
 
-const location = $.getdata
+//获取签到地址
+const location = $.getdata("gxy_address");
+//获取签到经度
+const longitude = $.getdata("gxy_longitude");
+//获取签到维度
+const latitude = $.getdata("gxy_latitude");
 
 
 
