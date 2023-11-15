@@ -116,11 +116,11 @@ function doLogin(){
         url: 'https://api.moguding.net:9000/session/user/v5/login',
         
         headers: {
-            // 'content-type': 'application/json',
-            'user-agent': 'Dart/2.17 (dart:io)'
+            "Content-Type": "application/json",
+            "user-agent": "Dart/2.17 (dart:io)"
         },
         
-        body: {
+        body: JSON.stringify({
             'phone' : aesEncrypt(account),
             'password': aesEncrypt(password),
             'captcha': 'null',
@@ -128,7 +128,7 @@ function doLogin(){
             'device': 'ios',
             'version':'5.13.5',
             't': aesEncrypt(getTime()),
-        }
+        })
     }
     
     $.post(options, async function(error,response,data){
