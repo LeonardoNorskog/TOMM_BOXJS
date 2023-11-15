@@ -16,7 +16,12 @@ QX 1.0.10+ :
 
 const $ = new Env(`工学云`);
 
-const token = $.getdata("gxy_tk");
+
+//工学云账号
+const account = "";
+
+//工学云密码
+const password = "";
 
 //获取签到地址
 const location = $.getdata("gxy_address");
@@ -24,9 +29,10 @@ const location = $.getdata("gxy_address");
 const longitude = $.getdata("gxy_longitude");
 //获取签到维度
 const latitude = $.getdata("gxy_latitude");
+//AES加密key
+const aesKey = '23DbtQHR2UMbH6mJ';
 
-
-
+doLogin()
 /*
 function checkin() {
   const xiaolanTools = {
@@ -52,7 +58,118 @@ function checkin() {
 }
 */
 
+//AES加密
+function aesEncrypt(data) {
+  // 将密钥转为Utf8格式
+  const keyUtf8 = CryptoJS.enc.Utf8.parse(aesKey);
 
+  // AES加密，使用ECB模式和PKCS7填充
+  const encrypted = CryptoJS.AES.encrypt(data, keyUtf8, {
+    mode: CryptoJS.mode.ECB,
+    padding: CryptoJS.pad.Pkcs7
+  });
+
+  // 获取加密后的Hex字符串
+  const encryptedHex = encrypted.toString(CryptoJS.format.Hex);
+
+  return encryptedHex;
+}
+
+
+//AES解密
+function aesDecrypt(encryptedHex) {
+  // 将密钥转为Utf8格式
+  const keyUtf8 = CryptoJS.enc.Utf8.parse(aesKey);
+
+  // 将加密后的Hex字符串转为CipherParams对象
+  const cipherParams = CryptoJS.lib.CipherParams.create({
+    ciphertext: CryptoJS.enc.Hex.parse(encryptedHex)
+  });
+
+  // AES解密，使用ECB模式和PKCS7填充
+  const decrypted = CryptoJS.AES.decrypt(cipherParams, keyUtf8, {
+    mode: CryptoJS.mode.ECB,
+    padding: CryptoJS.pad.Pkcs7
+  });
+
+  // 获取解密后的Utf8字符串
+  const decryptedText = decrypted.toString(CryptoJS.enc.Utf8);
+
+  return decryptedText;
+}
+
+
+//获取时间戳
+
+function getTime() {
+  return String(new Date().getTime());
+}
+
+//登录
+
+
+function doLogin(){
+    
+    const options = {
+        url: 'https://api.moguding.net:9000/session/user/v5/login'
+        
+        headers: {
+            'content-type': 'application/json',
+            'user-agent': 'Dart/2.17 (dart:io)'
+        }
+        
+        body: {
+            'phone' : aesEncrypt(account),
+            'password': aesEncrypt(password),
+            'captcha': 'null',
+            'loginType': 'android',
+            'device': 'ios',
+            'version':'5.13.5',
+            't': aesEncrypt(getTime()),
+        }
+    }
+    
+    $.post(options, async function(error,response,data){
+        
+        const result = JSON.parse(data);
+        if (result.code === 200) {
+            parse_data = decryptedText(result.data);
+            
+            $.log($.name, parse_data);
+            
+        }
+        
+    })
+    
+}
+
+//获取planId
+
+function getPlanId() {
+    
+    const options = {
+        
+        'url': 'https://api.moguding.net:9000/practice/plan/v3/getPlanByStu'
+        'headers': {
+            'user-agent': '',
+            'sign': '',
+            'authorization': ''
+            'content-type': 'application/json'
+        }
+        'body': {
+            'pageSize': 999999,
+            't': aesEncrypt(getTime())
+        }
+        
+    }
+    
+    $.post(options, async function(error,response,data){
+        
+        const result = JSON.parse(data)
+    })
+    
+    
+}
 
 
 
