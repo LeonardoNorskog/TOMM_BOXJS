@@ -42,7 +42,7 @@ const aesKey = '23DbtQHR2UMbH6mJ';
 
 doLogin()
 getPlanId()
-$.done()
+// $.done()
 /*
 function checkin() {
   const xiaolanTools = {
