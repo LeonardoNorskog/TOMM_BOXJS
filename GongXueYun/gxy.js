@@ -26,8 +26,11 @@ const account = "16630062606";
 const password = "Aa744850482";
 
 
-const sign = $.getdata("gxy_sign");
+// const sign = $.getdata("gxy_sign");
+const sign = "e11b346436e65262d2e61abf17a858ba"
+
 //获取签到地址
+
 const location = $.getdata("gxy_address");
 //获取签到经度
 const longitude = $.getdata("gxy_longitude");
