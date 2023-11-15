@@ -116,7 +116,7 @@ function doLogin(){
         url: 'https://api.moguding.net:9000/session/user/v5/login',
         
         headers: {
-            'content-type': 'application/json',
+            // 'content-type': 'application/json',
             'user-agent': 'Dart/2.17 (dart:io)'
         },
         
