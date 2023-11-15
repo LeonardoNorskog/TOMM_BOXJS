@@ -147,10 +147,10 @@ function doLogin(){
         //     $.log($.name, parse_data);
         //
         // }
-        
+        $.done()
     })
 
-    $.done()
+
     
 }
 
