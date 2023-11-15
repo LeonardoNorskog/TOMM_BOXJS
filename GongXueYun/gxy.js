@@ -25,6 +25,8 @@ const account = "16630062606";
 //工学云密码
 const password = "Aa744850482";
 
+
+const sign = $.getdata("gxy_sign");
 //获取签到地址
 const location = $.getdata("gxy_address");
 //获取签到经度
@@ -35,10 +37,9 @@ const latitude = $.getdata("gxy_latitude");
 const aesKey = '23DbtQHR2UMbH6mJ';
 
 
-// $.log(aesEncrypt(account), aesEncrypt(password))
-// $.done()
-
 doLogin()
+getPlanId()
+$.done()
 /*
 function checkin() {
   const xiaolanTools = {
@@ -80,6 +81,11 @@ function aesEncrypt(data) {
 
   return encryptedHex;
 }
+
+
+//获取sign
+
+
 
 
 //AES解密
@@ -143,12 +149,12 @@ function doLogin(){
             const parse_data = aesDecrypt(result.data);
 
             $.log($.name, parse_data);
+
+            $.token = parse_data["token"];
         }
-        $.done()
+        // $.done()
     })
 
-
-    
 }
 
 //获取planId
@@ -157,23 +163,25 @@ function getPlanId() {
     
     const options = {
         
-        'url': 'https://api.moguding.net:9000/practice/plan/v3/getPlanByStu',
-        'headers': {
+        url: 'https://api.moguding.net:9000/practice/plan/v3/getPlanByStu',
+        headers: {
             'user-agent': '',
-            'sign': '',
-            'authorization': '',
+            'sign': sign,
+            'authorization': $.token,
             'content-type': 'application/json'
         },
-        'body': {
+        'body': JSON.stringify({
             'pageSize': 999999,
             't': aesEncrypt(getTime())
-        }
+        })
         
     }
     
     $.post(options, async function(error,response,data){
         
         const result = JSON.parse(data)
+
+        $.log(result)
     })
     
     

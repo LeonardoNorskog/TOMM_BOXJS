@@ -16,7 +16,7 @@ QX 1.0.10+ :
 
 const $ = new Env(`工学云`);
 
-const token = $.getdata("gxy_tk") || '';
+// const token = $.getdata("gxy_tk") || '';
 const sign = $.getdata("gxy_sign") || '';
 
 // const location = $.getdata("gxy_address") || '';
@@ -67,15 +67,15 @@ function GetCookie(oldToken, oldSign) {
         //$.msg($.name, '', $request.headers['token'])
 
         //设置token  sign
-        const cookieValue = $request.headers['authorization'];
+        // const cookieValue = $request.headers['authorization'];
         const signValue = $request.headers['sign'];
-        const setCookie = $.setdata(cookieValue, `gxy_tk`);
+        // const setCookie = $.setdata(cookieValue, `gxy_tk`);
         const setSign = $.setdata(signValue, `gxy_sign`)
-        if (oldToken) {
-            $.log($.name, `更新Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
-        } else {
-            $.msg($.name, ``, `获取Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
-        }
+        // if (oldToken) {
+        //     $.log($.name, `更新Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+        // } else {
+        //     $.msg($.name, ``, `获取Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+        // }
         
         if (oldSign) {
             $.log($.name, `更新Sign${setSign ? `成功 🎉` : `失败 ⚠️`}`);
