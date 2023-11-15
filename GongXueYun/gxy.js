@@ -34,7 +34,11 @@ const latitude = $.getdata("gxy_latitude");
 //AES加密key
 const aesKey = '23DbtQHR2UMbH6mJ';
 
-doLogin()
+
+$.log(aesEncrypt(account), aesEncrypt(password))
+$.done()
+
+// doLogin()
 /*
 function checkin() {
   const xiaolanTools = {
