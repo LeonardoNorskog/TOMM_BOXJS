@@ -111,12 +111,12 @@ function getTime() {
 function doLogin(){
     
     const options = {
-        url: 'https://api.moguding.net:9000/session/user/v5/login'
+        url: 'https://api.moguding.net:9000/session/user/v5/login',
         
         headers: {
             'content-type': 'application/json',
             'user-agent': 'Dart/2.17 (dart:io)'
-        }
+        },
         
         body: {
             'phone' : aesEncrypt(account),
@@ -133,7 +133,7 @@ function doLogin(){
         
         const result = JSON.parse(data);
         if (result.code === 200) {
-            parse_data = decryptedText(result.data);
+            const parse_data = aesDecrypt(result.data);
             
             $.log($.name, parse_data);
             
@@ -149,13 +149,13 @@ function getPlanId() {
     
     const options = {
         
-        'url': 'https://api.moguding.net:9000/practice/plan/v3/getPlanByStu'
+        'url': 'https://api.moguding.net:9000/practice/plan/v3/getPlanByStu',
         'headers': {
             'user-agent': '',
             'sign': '',
-            'authorization': ''
+            'authorization': '',
             'content-type': 'application/json'
-        }
+        },
         'body': {
             'pageSize': 999999,
             't': aesEncrypt(getTime())
