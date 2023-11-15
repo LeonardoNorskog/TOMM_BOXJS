@@ -140,6 +140,8 @@ function doLogin(){
         }
         
     })
+
+    $.done()
     
 }
 
