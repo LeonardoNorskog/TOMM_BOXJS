@@ -135,9 +135,9 @@ function doLogin(){
         })
     }
     
-    $.post(options, async function(error, response, data){
+    $.post(options, function(error, response, data){
 
-        $.log("woshi ")
+        $.log($.name, data, response)
 
         const result = JSON.parse(data);
         $.log($.name, result);
