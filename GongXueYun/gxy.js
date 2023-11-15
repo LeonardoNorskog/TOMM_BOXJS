@@ -18,10 +18,10 @@ const $ = new Env(`工学云`);
 
 
 //工学云账号
-const account = "";
+const account = "16630062606";
 
 //工学云密码
-const password = "";
+const password = "Aa744850482";
 
 //获取签到地址
 const location = $.getdata("gxy_address");
