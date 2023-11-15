@@ -137,16 +137,13 @@ function doLogin(){
     
     $.post(options, function(error, response, data){
 
-        $.log($.name, data, response)
 
         const result = JSON.parse(data);
-        $.log($.name, result);
-        // if (result.code === 200) {
-        //     const parse_data = aesDecrypt(result.data);
-        //
-        //     $.log($.name, parse_data);
-        //
-        // }
+        if (result.code === 200) {
+            const parse_data = aesDecrypt(result.data);
+
+            $.log($.name, parse_data);
+        }
         $.done()
     })
 
