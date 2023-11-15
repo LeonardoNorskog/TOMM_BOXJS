@@ -135,15 +135,12 @@ function doLogin(){
         })
     }
     
-    $.post(options, async function(error,response,data){
+    $.post(options, async function(error, response, data){
 
-        $.log(data);
+        $.log("woshi ")
 
-
-        // const result = JSON.parse(data);
-        //
-        //
-        // $.log($.name, result);
+        const result = JSON.parse(data);
+        $.log($.name, result);
         // if (result.code === 200) {
         //     const parse_data = aesDecrypt(result.data);
         //
