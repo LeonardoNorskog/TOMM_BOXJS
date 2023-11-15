@@ -168,7 +168,7 @@ function getPlanId() {
         
         url: 'https://api.moguding.net:9000/practice/plan/v3/getPlanByStu',
         headers: {
-            'user-agent': '',
+            'user-agent': 'Dart/2.17 (dart:io)',
             'sign': sign,
             'authorization': $.token,
             'content-type': 'application/json'
@@ -184,11 +184,81 @@ function getPlanId() {
         
         const result = JSON.parse(data)
 
-        $.log(result)
+        $.log(result["data"]["planId"])
     })
-    
-    
 }
+
+
+//签到
+function doSign() {
+
+    const options = {
+        url: "https://api.moguding.net:9000/attendence/clock/v4/save",
+        headers: {
+            "content-type": "application/json",
+            'user-agent': 'Dart/2.17 (dart:io)',
+            'sign': sign,
+            'authorization': $.token,
+
+        },
+        body: JSON.stringify({
+                "attendanceId": null,
+                "device": "{brand: iPhone, systemVersion: 16.7.1, Platform: iOS, isPhysicalDevice: true, incremental: 16.7.1}",
+                "isDeleted": null,
+                "planId": "9c329e9f351691b0656159193d52ff3a",
+                "country": "中国",
+                "state": "NORMAL",
+                "attendanceType": null,
+                "address": "山西省 · 阳泉市 · 郊区 · 在云谷科技创新园附近",
+                "isSYN": null,
+                "className": null,
+                "lastAddress": null,
+                "description": null,
+                "majorName": null,
+                "modifiedTime": null,
+                "type": "START",
+                "modifiedBy": null,
+                "attachments": null,
+                "depName": null,
+                "area": "郊区",
+                "isReplace": null,
+                "distance": null,
+                "studentNumber": null,
+                "studentId": null,
+                "longitude": "113.6344947305783",
+                "createBy": null,
+                "city": "阳泉市",
+                "images": null,
+                "username": null,
+                "teacherNumber": null,
+                "applyState": null,
+                "attendenceTime": null,
+                "content": null,
+                "province": "山西省",
+                "teacherId": null,
+                "lastDetailAddress": null,
+                "t": "05c08f8ea92011bb803934938b7742ec",
+                "createTime": "2023-11-15 08:37:54",
+                "schoolId": null,
+                "memberNumber": null,
+                "logDtoList": null,
+                "stuId": null,
+                "headImg": null,
+                "userId": "103770600",
+                "latitude": "37.87075985729747"
+}
+)
+    }
+
+
+
+
+
+
+
+}
+
+
 
 
 
