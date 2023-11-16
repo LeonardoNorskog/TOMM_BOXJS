@@ -27,32 +27,6 @@ if (typeof $request !== 'undefined') {
     GetCookie()
 }
 
-/*
-function checkin() {
-  const xiaolanTools = {
-    url: 'https://wxapp.xiaolankj.top/api/app/user.php?act=userCheckIn',
-    headers: {
-      token: token,
-      "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.43(0x18002b29) NetType/WIFI Language/zh_CN"
-    }
-  };
-  $.get(xiaolanTools, async function (error, response, data) {
-
-    const result = JSON.parse(data)
-
-    if (result.code === 2) {
-      $.msgBody = `${result.msg}`;
-    }
-    if (barkKey) {
-      await BarkNotify($, barkKey, $.name, $.msgBody);
-    }
-    $.msg($.name, ``, $.msgBody); 
-    $.done();
-  })
-}
-*/
-
-
 function GetCookie() {
     const req = JSON.stringify($request);
     $.log($.name, req)
@@ -60,6 +34,7 @@ function GetCookie() {
     if (req.includes('/attendence/clock/v4/save')) {
 
         console.log($request.body)
+        console.log($request.headers)
         console.log(typeof $request.body)
         //     const signValue = $request.headers['sign'];
         //     // const setCookie = $.setdata(cookieValue, `gxy_tk`);
