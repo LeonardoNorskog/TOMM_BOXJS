@@ -139,12 +139,13 @@ function doLogin() {
                         throw new Error(body.msg && data);
                     }
                 }
-            } catch (e){ 
+            } catch (e) {
                 console.log(`出现错误${e.message}`)
+            }
                 
               finally {
                   resolve()
-              }  
+
             }
         })
     })
