@@ -128,13 +128,15 @@ function doLogin() {
                     if (body.code === 200 && body.data) {
                         
                         const endata = aesDecrypt(body.data);
+
+                        console.log(typeof endata);
                         
-                        userData.token = endata.token
-                        userData.userId = endata.userId
-                        // console.log(`\n当前Token：${endata.token}`);
-                        console.log(endata.token)
-                        console.log(userData);
-                        console.log(endata);
+                        // userData.token = endata.token
+                        // userData.userId = endata.userId
+                        // // console.log(`\n当前Token：${endata.token}`);
+                        // console.log(endata.token)
+                        // console.log(userData);
+                        // console.log(endata);
                     } else {
                         throw new Error(body.msg && data);
                     }
