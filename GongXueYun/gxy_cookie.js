@@ -35,10 +35,10 @@ function GetCookie() {
 
 
 
+        const parse_data = JSON.parse($request.body)
+        console.log(parse_data);
 
-        console.log($request.body);
-
-        console.log(typeof $request.body);
+        console.log(typeof parse_data);
         //     const signValue = $request.headers['sign'];
         //     // const setCookie = $.setdata(cookieValue, `gxy_tk`);
         //     const setSign = $.setdata(signValue, `gxy_sign`)
