@@ -33,10 +33,10 @@ function GetCookie() {
 
     if (req.includes('/attendence/clock/v4/save')) {
 
-        console.log($request.body);
+        console.log(JSON.parse($request.body));
         
         
-        console.log($request.headers)
+        console.log($request.headers.sign)
         
         console.log(typeof $request.body);
 
