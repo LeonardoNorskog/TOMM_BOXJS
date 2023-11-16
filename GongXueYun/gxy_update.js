@@ -127,7 +127,9 @@ function doLogin() {
                     const body = JSON.parse(data);
                     if (body.code === 200 && body.data) {
                         
-                        const endata = aesDecrypt(body.data);
+                        const endata = JSON.parse(aesDecrypt(body.data));
+
+
 
                         console.log(typeof endata);
                         
