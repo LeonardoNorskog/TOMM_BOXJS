@@ -31,11 +31,7 @@ const userData = {};
 
 //调用
 (async function() { // 立即运行的匿名异步函数
-	// 使用await关键字声明, 表示以同步方式执行异步函数, 可以简单理解为顺序执行
-	// await Promise.all([ //该方法用于将多个实例包装成一个新的实例, 可以简单理解为同时调用函数, 以进一步提高执行速度
-	// 	doLogin(),
-    //
-	// ]);
+
     await doLogin();
 	await getPlanId();
 	$.done(); //抢购完成后调用Surge、QX内部特有的函数, 用于退出脚本执行
@@ -129,14 +125,15 @@ function doLogin() {
                     throw new Error(error);
                 } else {
                     const body = JSON.parse(data);
-                    if (body.code == 200 && body.data) {
+                    if (body.code === 200 && body.data) {
                         
                         const endata = aesDecrypt(body.data);
                         
                         userData.token = endata.token
                         userData.userId = endata.userId
                         console.log(`\n当前Token：${endata.token}`);
-                        console.log(userData)
+                        console.log(userData);
+                        console.log(endata);
                     } else {
                         throw new Error(body.msg && data);
                     }
@@ -239,3 +236,11 @@ function Env(t,e){class s{constructor(t){this.env=t}send(t,e="GET"){t="string"==
 
 
 async function BarkNotify(c, k, t, b) { for (let i = 0; i < 3; i++) { console.log(`🔷Bark notify >> Start push (${i + 1})`); const s = await new Promise((n) => { c.post({ url: 'https://api.day.app/push', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ title: t, body: b, device_key: k, ext_params: { group: t } }) }, (e, r, d) => r && r.status == 200 ? n(1) : n(d || e)) }); if (s === 1) { console.log('✅Push success!'); break } else { console.log(`❌Push failed! >> ${s.message || s}`) } } };
+
+
+
+
+
+
+
+a = {"msg": "success", "data": {"authType":2,"expiredTime":2015505517000,"gender":0,"headImg":"f005585371b08470a447374c1a8e85c7.png","isAccount":0,"moguNo":"7378642","msgConfig":{},"neteaseImId":"2ec8dc1ab7f645e8afa93ed1c6b8af5e","nikeName":"董嘉怡","orgJson":{"classId":"847c784b64c8436dd09bd8ddd4dbe55d","className":"1班","depId":"777ca3050396e3b96f68ce1faa33f420","depName":"外语系","grade":"2021","majorField":"","majorId":"8bf089fb2b90416c9c203067d90bdacf","majorName":"婴幼儿托育服务与管理","schoolId":"1b1d31da5f84676a3a1403e27f28f5c5","schoolName":"衡水职业技术学院","snowFlakeId":"1000595","studentId":"7f49a187f1ef75e2d35e5b55264d436e","studentNumber":"202104160107","userName":"董嘉怡"},"phone":"13930335606","roleGroup":[{"currPage":1,"orderBy":"create_time","pageSize":10,"roleId":"1123121137695158273","roleKey":"student","roleLevel":"0","roleName":"学生","sort":"desc","totalCount":0,"totalPage":0}],"roleId":"1123121137695158273","roleKey":"student","roleLevel":"0","roleName":"学生","token":"eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJtb2d1ZGluZy11c2VyIiwic3ViIjoie1wibG9naW5UeXBlXCI6XCJhbmRyb2lkXCIsXCJ1c2VySWRcIjoxMDUzMjkzMTV9IiwiYXVkIjoibW9ndWRpbmciLCJleHAiOjIwMTU1MDU1MTcsIm5iZiI6MTY5OTg4NTQxNywiaWF0IjoxNjk5ODg2MzE3fQ.x4wuY7p8-KNCZy8QukvJbD_JJii3XH4G3JjW0G5AbvVoblW2_wpL1QrDRG4n_G7LQiP1YJSWxS46VykK9bmW4Q","userId":"105329315","userType":"student"}, "code": 200}
