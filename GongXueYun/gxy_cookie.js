@@ -34,11 +34,13 @@ function GetCookie() {
     if (req.includes('/attendence/clock/v4/save')) {
 
         console.log($request.body);
+        
+        console.log(typeof $request.body);
 
-        const parse_data = JSON.parse($request.body)
-        console.log(parse_data);
+        //const parse_data = JSON.parse($request.body)
+        //console.log(parse_data);
 
-        console.log(typeof parse_data);
+        //console.log(typeof parse_data);
         //     const signValue = $request.headers['sign'];
         //     // const setCookie = $.setdata(cookieValue, `gxy_tk`);
         //     const setSign = $.setdata(signValue, `gxy_sign`)
