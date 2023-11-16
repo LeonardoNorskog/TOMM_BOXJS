@@ -25,10 +25,8 @@ const province = $.getdata("gxy_province") || '';
 const city = $.getdata("gxy_city") || '';
 //获取地区
 const area = $.getdata("gxy_area") || '';
-
 //AES加密key
 const aesKey = '23DbtQHR2UMbH6mJ';
-
 const userData = {};
 
 
@@ -38,11 +36,25 @@ const userData = {};
     await doLogin();
 	await getPlanId();
 
+    // 获取当前时间
+    var currentTime = new Date();
+    // 获取当前小时
+    var currentHour = currentTime.getHours();
 
+    // 判断当前时间
+    if (currentHour >= 12) {
+        // 如果当前时间过了中午十二点，执行函数1
+        await doSign();
+    } else {
+        // 否则执行函数2
+        await doSign();
+    }
 
-    await doSign();
-	$.done(); //抢购完成后调用Surge、QX内部特有的函数, 用于退出脚本执行
+    $.done(); //抢购完成后调用Surge、QX内部特有的函数, 用于退出脚本执行
 })();
+
+
+
 
 
 
