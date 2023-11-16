@@ -170,7 +170,7 @@ function getPlanId() {
         url: 'https://api.moguding.net:9000/practice/plan/v3/getPlanByStu',
         headers: {
             'user-agent': 'Dart/2.17 (dart:io)',
-            'sign': sign,
+            'sign': userData.sign,
             'authorization': userData.token,
             'content-type': 'application/json'
         },
@@ -221,7 +221,7 @@ function doSign() {
         url : "https://api.moguding.net:9000/attendence/clock/v4/save",
         headers : {
             'user-agent': 'Dart/2.17 (dart:io)',
-            'sign': sign,
+            'sign': userData.sign,
             'authorization': userData.token,
             'content-type': 'application/json'
         },
