@@ -240,7 +240,7 @@ function doSign() {
         url : "https://api.moguding.net:9000/attendence/clock/v4/save",
         headers : {
             'user-agent': 'Dart/2.17 (dart:io)',
-            'sign': CryptoJS.MD5("Android" + "START" + userData.planId + userData.userId + location + "3478cbbc33f84bd00d75d7dfa69e0daa").toString(),
+            'sign': "68639af64301c0c5e16095d000d640f6",
             'authorization': userData.token,
             'content-type': 'application/json'
         },
