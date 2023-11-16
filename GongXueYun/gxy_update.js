@@ -13,16 +13,19 @@ const account = "16630062606";
 const password = "Aa744850482";
 
 
-// const sign = $.getdata("gxy_sign");
-const sign = "e11b346436e65262d2e61abf17a858ba"
-
 //获取签到地址
-
-const location = $.getdata("gxy_address");
+const location = $.getdata("gxy_address") || '';
 //获取签到经度
-const longitude = $.getdata("gxy_longitude");
+const longitude = $.getdata("gxy_longitude") || '';
 //获取签到维度
-const latitude = $.getdata("gxy_latitude");
+const latitude = $.getdata("gxy_latitude") ||'';
+//获取签到省份
+const province = $.getdata("gxy_province") || '';
+//获取签到城市
+const city = $.getdata("gxy_city") || '';
+//获取地区
+const area = $.getdata("gxy_area") || '';
+
 //AES加密key
 const aesKey = '23DbtQHR2UMbH6mJ';
 
@@ -129,13 +132,18 @@ function doLogin() {
                         
                         const endata = JSON.parse(aesDecrypt(body.data));
 
-
+                        const sign = CryptoJS.MD5(endata.userId + "student" + "3478cbbc33f84bd00d75d7dfa69e0daa").toString();
 
                         // console.log(typeof endata);
                         
                         userData.token = endata.token
                         userData.userId = endata.userId
+                        userData.sign = sign;
+
+                        console.log(`\n当前Sign：${sign}`);
                         console.log(`\n当前Token：${endata.token}`);
+
+
                         // console.log(endata.token)
                         // console.log(userData.token);
                         // console.log(endata);
@@ -154,9 +162,6 @@ function doLogin() {
         })
     })
 }
-
-
-//function getSign () {}
 
 function getPlanId() {
     const options = {
@@ -207,6 +212,91 @@ function getPlanId() {
         
     })
 }
+
+
+function doSign() {
+
+    const options = {
+        url : "https://api.moguding.net:9000/attendence/clock/v4/save",
+        headers : {
+            'user-agent': 'Dart/2.17 (dart:io)',
+            'sign': sign,
+            'authorization': userData.token,
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            // "attendanceId": null,
+            "device": "{brand: iPhone, systemVersion: 16.7.1, Platform: iOS, isPhysicalDevice: true, incremental: 16.7.1}",
+            // "isDeleted": null,
+            "planId": userData.planId,
+            "country": "中国",
+            "state": "NORMAL",
+            // "attendanceType": null,
+            "address": location ,
+            // "isSYN": null,
+            // "className": null,
+            // "lastAddress": null,
+            // "description": null,
+            // "majorName": null,
+            // "modifiedTime": null,
+            // "type": "START",
+            // "modifiedBy": null,
+            // "attachments": null,
+            // "depName": null,
+            "area": area,
+            // "isReplace": null,
+            // "distance": null,
+            // "studentNumber": null,
+            // "studentId": null,
+            "longitude": longitude,
+            // "createBy": null,
+            "city": "阳泉市",
+            // "images": null,
+            // "username": null,
+            // "teacherNumber": null,
+            // "applyState": null,
+            // "attendenceTime": null,
+            // "content": null,
+            "province": province,
+            // "teacherId": null,
+            // "lastDetailAddress": null,
+            "t": aesEncrypt(getTime()),
+            // "createTime": "2023-11-15 08:37:54",
+            // "schoolId": null,
+            // "memberNumber": null,
+            // "logDtoList": null,
+            // "stuId": null,
+            // "headImg": null,
+            "userId": userData.userId,
+            "latitude": latitude
+        })
+    }
+
+    return new Promise((resolve) => {
+        $.post(options, (error, resp, data) => {
+            try {
+                if (error) {
+                    throw new Error(error);
+                } else {
+                    const body = JSON.parse(data);
+                    if (body.code === 200 && body.data) {
+                        console.log(`签到结果：${body.msg}`);
+                    } else {
+                        throw new Error(body.msg || data);
+                    }
+                }
+            } catch (e) {
+                console.log(`出现错误: ${e.message}`);
+            } finally {
+                resolve();
+            }
+
+
+        })
+    })
+}
+
+
 
 function GetUserPoint() {
 	const pointUrl = { //查询积分接口

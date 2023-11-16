@@ -16,8 +16,6 @@ QX 1.0.10+ :
 
 const $ = new Env(`工学云`);
 
-// const token = $.getdata("gxy_tk") || '';
-
 //获取签到地址
 const location = $.getdata("gxy_address") || '';
 //获取签到经度
@@ -28,45 +26,57 @@ const latitude = $.getdata("gxy_latitude") ||'';
 const province = $.getdata("gxy_province") || '';
 //获取签到城市
 const city = $.getdata("gxy_city") || '';
-//获取签到城市
+//获取地区
+const area = $.getdata("gxy_area") || '';
 
 
 //const barkKey = ''; //Bark APP 通知推送Key
 
 if (typeof $request !== 'undefined') {
-    GetLocation(location, longitude, latitude, province. city)
+    GetLocation(location, longitude, latitude, province, city, area)
 } else if (!location) {
-    $.msg($.name, ``, `签到位置失效/未获取 ⚠️`);
+    $.msg($.name, ``, `获取签到位置失败/未获取 ⚠️`);
     $.done();
-} else {
-    //checkin()
+} else if (!longitude) {
+    $.msg($.name, ``, `获取签到经度失败/未获取 ⚠️`);
+    $.done();
+} else if (!latitude) {
+    $.msg($.name, ``, `获取签到纬度失败/未获取 ⚠️`);
+    $.done();
+} else if (!province) {
+    $.msg($.name, ``, `获取签到省份失败/未获取 ⚠️`);
+    $.done();
+} else if (!city) {
+    $.msg($.name, ``, `获取签到城市失败/未获取 ⚠️`);
+    $.done();
+} else if (!area) {
+    $.msg($.name, ``, `获取签到区域失败/未获取 ⚠️`);
+    $.done();
 }
 
 
-function GetLocation(oldAddR, old_longitude, old_latitude, old_province, old_city) {
+function GetLocation(oldAddR, old_longitude, old_latitude, old_province, old_city, old_area) {
     const req = JSON.parse($response.body);
 
 
-    const addressValue = req['data'][0]['address']
-    const longitudeValue = req['data'][0]['longitude']
-    const  latitudeValue = req['data'][0]['latitude']
-    
-    const  provinceValue = req['data'][0]['province']
-    
-    const  cityValue = req['data'][0]['city']
+    const addressValue = req['data'][0]['address'];
+    const longitudeValue = req['data'][0]['longitude'];
+    const  latitudeValue = req['data'][0]['latitude'];
+    const  provinceValue = req['data'][0]['province'];
+    const  cityValue = req['data'][0]['city'];
+    const areaValue = req['data'][0]['area'];
     
     
     
     //$.msg($.name, '', addressValue)
     //$.log($.name, addressValue, longitudeValue, latitudeValue)
 
-    const setAddress = $.setdata(addressValue, `gxy_address`)
-    const setLongitude = $.setdata(longitudeValue, `gxy_longitude`)
-    const setLatitude = $.setdata(longitudeValue, `gxy_latitude`)
-    
-    const setProvince = $.setdata(provinceValue, `gxy_province`)
-    
-    const setCity = $.setdata(cityValue, `gxy_city`)
+    const setAddress = $.setdata(addressValue, `gxy_address`);
+    const setLongitude = $.setdata(longitudeValue, `gxy_longitude`);
+    const setLatitude = $.setdata(latitudeValue, `gxy_latitude`);
+    const setProvince = $.setdata(provinceValue, `gxyprovince`);
+    const setCity = $.setdata(cityValue, `gxy_city`);
+    const setArea = $.setdata(areaValue, `gxy_area`);
     
     
 
@@ -98,6 +108,12 @@ function GetLocation(oldAddR, old_longitude, old_latitude, old_province, old_cit
         $.log($.name, `更新城市${setCity ? `成功 🎉` : `失败 ⚠️`}`);
     } else {
         $.msg($.name, ``, `获取城市${setCity ? `成功 🎉` : `失败 ⚠️`}`);
+    }
+
+    if (old_area) {
+        $.log($.name, `更新地区${setArea ? `成功 🎉` : `失败 ⚠️`}`);
+    } else {
+        $.msg($.name, ``, `获取地区${setArea ? `成功 🎉` : `失败 ⚠️`}`);
     }
 
 
