@@ -62,30 +62,29 @@ function GetCookie(oldToken, oldSign) {
     const req = JSON.stringify($request);
     $.log($.name, req)
 
-    if (req.includes('/practice/plan/v3/getPlanByStu')) {
-        //$.log($.name, $request.headers['token'])
-        //$.msg($.name, '', $request.headers['token'])
+    if (req.includes('/attendence/clock/v4/save')) {
 
-        //设置token  sign
-        // const cookieValue = $request.headers['authorization'];
-        const signValue = $request.headers['sign'];
-        // const setCookie = $.setdata(cookieValue, `gxy_tk`);
-        const setSign = $.setdata(signValue, `gxy_sign`)
-        // if (oldToken) {
-        //     $.log($.name, `更新Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
-        // } else {
-        //     $.msg($.name, ``, `获取Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+        console.log($request.body)
+        console.log(typeof $request.body)
+        //     const signValue = $request.headers['sign'];
+        //     // const setCookie = $.setdata(cookieValue, `gxy_tk`);
+        //     const setSign = $.setdata(signValue, `gxy_sign`)
+        //     // if (oldToken) {
+        //     //     $.log($.name, `更新Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+        //     // } else {
+        //     //     $.msg($.name, ``, `获取Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
+        //     // }
+        //
+        //     if (oldSign) {
+        //         $.log($.name, `更新Sign${setSign ? `成功 🎉` : `失败 ⚠️`}`);
+        //     } else {
+        //         $.msg($.name, ``, `获取Sign${setSign ? `成功 🎉` : `失败 ⚠️`}`);
+        //     }
+        //
         // }
-        
-        if (oldSign) {
-            $.log($.name, `更新Sign${setSign ? `成功 🎉` : `失败 ⚠️`}`);
-        } else {
-            $.msg($.name, ``, `获取Sign${setSign ? `成功 🎉` : `失败 ⚠️`}`);
-        }
-        
-    }
 
-    $.done()
+        $.done()
+    }
 }
 function Env(t, e) {
     class s {
@@ -508,24 +507,4 @@ function Env(t, e) {
     }(t, e)
 }
 
-
-//Bark APP notify
-async function BarkNotify(c, k, t, b) {
-    for (let i = 0; i < 3; i++) {
-        console.log(`🔷Bark notify >> Start push (${i + 1})`);
-        const s = await new Promise((n) => {
-            c.post({
-                url: 'https://api.day.app/push',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({title: t, body: b, device_key: k, ext_params: {group: t}})
-            }, (e, r, d) => r && r.status == 200 ? n(1) : n(d || e))
-        });
-        if (s === 1) {
-            console.log('✅Push success!');
-            break
-        } else {
-            console.log(`❌Push failed! >> ${s.message || s}`)
-        }
-    }
-};
 
