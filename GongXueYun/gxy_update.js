@@ -213,6 +213,8 @@ function getPlanId() {
 
                         userData.planId = body.data[0].planId
 
+
+
                         console.log(`\n当前planId：${body.data[0].planId}`);
                     } else {
                         throw new Error(error);
@@ -231,14 +233,14 @@ function getPlanId() {
     })
 }
 
-
+//device + signType + planId + userId + address
 function doSign() {
 
     const options = {
         url : "https://api.moguding.net:9000/attendence/clock/v4/save",
         headers : {
             'user-agent': 'Dart/2.17 (dart:io)',
-            'sign': userData.sign,
+            'sign': CryptoJS.MD5("Android" + "START" + userData.planId + userData.userId + location + "3478cbbc33f84bd00d75d7dfa69e0daa").toString(),
             'authorization': userData.token,
             'content-type': 'application/json'
         },
