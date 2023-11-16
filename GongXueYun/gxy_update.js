@@ -131,7 +131,8 @@ function doLogin() {
                         
                         userData.token = endata.token
                         userData.userId = endata.userId
-                        console.log(`\n当前Token：${endata.token}`);
+                        // console.log(`\n当前Token：${endata.token}`);
+                        console.log(endata.token)
                         console.log(userData);
                         console.log(endata);
                     } else {
