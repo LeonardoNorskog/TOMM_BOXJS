@@ -16,34 +16,40 @@ QX 1.0.10+ :
 
 const $ = new Env(`工学云`);
 
-// const token = $.getdata("gxy_tk") || '';
-// const sign = $.getdata("gxy_sign") || '';
 
-// const location = $.getdata("gxy_address") || '';
+//上班sign
+const start_sign = $.getdata('gxy_start_sign');
 
-//const barkKey = ''; //Bark APP 通知推送Key
+//下班sign
+const end_sign = $.getdata('gxy_end_sign');
 
 if (typeof $request !== 'undefined') {
-    GetCookie()
+    GetCookie(start_sign, end_sign)
 }
 
-function GetCookie() {
+function GetCookie(old_start_sign, old_end_sign) {
     const req = JSON.stringify($request);
     //$.log($.name, req)
 
     if (req.includes('/attendence/clock/v4/save')) {
-
-        console.log(JSON.parse($request.body));
         
         
-        console.log($request.headers.sign)
         
-        console.log(typeof $request.body);
+        //将请求体转为json格式
+        
+        const parse_body = JSON.parse($request.body);
+        //获取请求头sign
+        
+        const gxy_sign = $request.headers.sign;
+        
+        if (parse_body.type == 'START') {
+            
+            const setSign = $.setdata(gxy_sign, `gxy_start_sign`);
+        }
+        
 
-        //const parse_data = JSON.parse($request.body)
-        //console.log(parse_data);
 
-        //console.log(typeof parse_data);
+
         //     const signValue = $request.headers['sign'];
         //     // const setCookie = $.setdata(cookieValue, `gxy_tk`);
         //     const setSign = $.setdata(signValue, `gxy_sign`)
