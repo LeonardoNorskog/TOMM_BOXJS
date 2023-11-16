@@ -131,13 +131,13 @@ function doLogin() {
 
 
 
-                        console.log(typeof endata);
+                        // console.log(typeof endata);
                         
-                        // userData.token = endata.token
-                        // userData.userId = endata.userId
-                        // // console.log(`\n当前Token：${endata.token}`);
+                        userData.token = endata.token
+                        userData.userId = endata.userId
+                        console.log(`\n当前Token：${endata.token}`);
                         // console.log(endata.token)
-                        // console.log(userData);
+                        console.log(userData.token);
                         // console.log(endata);
                     } else {
                         throw new Error(body.msg && data);
