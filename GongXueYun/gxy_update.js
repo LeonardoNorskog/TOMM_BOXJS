@@ -181,16 +181,20 @@ function getPlanId() {
                 if (error) {
                     throw new Error(error);
                 } else {
-                    const body = JSON.parse(data);
-                    
-                    if (body.code == 200 && body.data) {
-                        
-                        userData.planId = body.data.planId
-                        
-                        console.log(`\n当前planId：${body.data.planId}`);
-                    } else {
-                        throw new Error(error);
-                    }
+                    console.log(data);
+                    console.log(typeof data);
+
+
+                    // const body = JSON.parse(data);
+                    //
+                    // if (body.code == 200 && body.data) {
+                    //
+                    //     userData.planId = body.data.planId
+                    //
+                    //     console.log(`\n当前planId：${body.data.planId}`);
+                    // } else {
+                    //     throw new Error(error);
+                    // }
                 }
             } catch (e) {
                 console.log(`出现错误${message}`);
