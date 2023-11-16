@@ -137,7 +137,7 @@ function doLogin() {
                         userData.userId = endata.userId
                         console.log(`\n当前Token：${endata.token}`);
                         // console.log(endata.token)
-                        console.log(userData.token);
+                        // console.log(userData.token);
                         // console.log(endata);
                     } else {
                         throw new Error(body.msg && data);
@@ -174,27 +174,26 @@ function getPlanId() {
         })
         
     }
-    
+
+
     return new Promise((resolve) => {
         $.post(options, (error, resp, data) => {
             try {
                 if (error) {
                     throw new Error(error);
                 } else {
-                    console.log(data);
-                    console.log(typeof data);
+                    // console.log(data);
+                    // console.log(typeof data);
+                    const body = JSON.parse(data);
 
+                    if (body.code === 200 && body.data) {
 
-                    // const body = JSON.parse(data);
-                    //
-                    // if (body.code == 200 && body.data) {
-                    //
-                    //     userData.planId = body.data.planId
-                    //
-                    //     console.log(`\n当前planId：${body.data.planId}`);
-                    // } else {
-                    //     throw new Error(error);
-                    // }
+                        userData.planId = body.data[0].planId
+
+                        console.log(`\n当前planId：${body.data[0].planId}`);
+                    } else {
+                        throw new Error(error);
+                    }
                 }
             } catch (e) {
                 console.log(`出现错误${message}`);
