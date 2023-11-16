@@ -17,19 +17,14 @@ QX 1.0.10+ :
 const $ = new Env(`工学云`);
 
 // const token = $.getdata("gxy_tk") || '';
-const sign = $.getdata("gxy_sign") || '';
+// const sign = $.getdata("gxy_sign") || '';
 
 // const location = $.getdata("gxy_address") || '';
 
 //const barkKey = ''; //Bark APP 通知推送Key
 
 if (typeof $request !== 'undefined') {
-    GetCookie(token, sign)
-} else if (!token) {
-    $.msg($.name, ``, `签到token失效/未获取 ⚠️`);
-    $.done();
-} else {
-    //checkin()
+    GetCookie()
 }
 
 /*
@@ -58,7 +53,7 @@ function checkin() {
 */
 
 
-function GetCookie(oldToken, oldSign) {
+function GetCookie() {
     const req = JSON.stringify($request);
     $.log($.name, req)
 
