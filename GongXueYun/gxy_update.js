@@ -49,15 +49,8 @@ const userData = {};
         // 否则执行函数2
         await doSign();
     }
-
     $.done(); //抢购完成后调用Surge、QX内部特有的函数, 用于退出脚本执行
 })();
-
-
-
-
-
-
 
 //AES加密
 function aesEncrypt(data) {
