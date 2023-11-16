@@ -97,6 +97,23 @@ function getTime() {
 }
 
 
+function nowTime() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    const formattedTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    // console.log(formattedTime);
+    return formattedTime
+}
+
+
+
+
 function doLogin() {
     
     const options = {
@@ -226,13 +243,13 @@ function doSign() {
             'content-type': 'application/json'
         },
         body: JSON.stringify({
-            // "attendanceId": null,
+            "attendanceId": null,
             "device": "{brand: iPhone, systemVersion: 16.7.1, Platform: iOS, isPhysicalDevice: true, incremental: 16.7.1}",
-            // "isDeleted": null,
+            "isDeleted": null,
             "planId": userData.planId,
             "country": "中国",
             "state": "NORMAL",
-            // "attendanceType": null,
+            "attendanceType": null,
             "address": location ,
             "isSYN": null,
             "className": null,
@@ -251,7 +268,7 @@ function doSign() {
             "studentId": null,
             "longitude": longitude,
             "createBy": null,
-            "city": "阳泉市",
+            "city": city,
             "images": null,
             "username": null,
             "teacherNumber": null,
@@ -262,7 +279,7 @@ function doSign() {
             "teacherId": null,
             "lastDetailAddress": null,
             "t": aesEncrypt(getTime()),
-            "createTime": "2023-11-15 08:37:54",
+            "createTime": nowTime(),
             "schoolId": null,
             "memberNumber": null,
             "logDtoList": null,
