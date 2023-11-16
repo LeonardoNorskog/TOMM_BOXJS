@@ -37,6 +37,9 @@ const userData = {};
 
     await doLogin();
 	await getPlanId();
+
+
+
     await doSign();
 	$.done(); //抢购完成后调用Surge、QX内部特有的函数, 用于退出脚本执行
 })();
@@ -234,13 +237,13 @@ function getPlanId() {
 }
 
 //device + signType + planId + userId + address
-function doSign() {
+function doSign(sign) {
 
     const options = {
         url : "https://api.moguding.net:9000/attendence/clock/v4/save",
         headers : {
             'user-agent': 'Dart/2.17 (dart:io)',
-            'sign': "68639af64301c0c5e16095d000d640f6",
+            'sign': sign,
             'authorization': userData.token,
             'content-type': 'application/json'
         },
