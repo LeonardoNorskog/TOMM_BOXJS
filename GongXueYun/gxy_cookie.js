@@ -29,11 +29,14 @@ if (typeof $request !== 'undefined') {
 
 function GetCookie() {
     const req = JSON.stringify($request);
-    $.log($.name, req)
+    //$.log($.name, req)
 
     if (req.includes('/attendence/clock/v4/save')) {
 
         console.log($request.body);
+        
+        
+        console.log($request.headers)
         
         console.log(typeof $request.body);
 
