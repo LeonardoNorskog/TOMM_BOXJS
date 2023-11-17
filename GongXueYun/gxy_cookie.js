@@ -1,16 +1,20 @@
 /*
+===================工学云签到QX脚本===================
+
 说明：
-打开小懒工具箱小程序后，单击"赚金币"，"立即签到", 如果通知获取token成功, 则可以使用此脚本.
-脚本将在每天0点20执行。 您可以修改执行时间。
 
-QX 1.0.10+ :
+打开工学云先手动下拉刷新一下然后点击签到，必须上班下班各手动签到一次，提示获取上班Sign、下班Sign等等完成后即可正常签到
+使用：
+QuantumultX：
 
+签到是每天7点和18点各一次
 [task_local]
-20 0 * * * https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/XiaoLanTools/xl_tools_update.js, tag=小懒工具箱签到
+;工学云定时签到
+0 7,18 * * * https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/GongXueYun/gxy_update.js, tag=工学云签到
 
 [rewrite_local]
-获取token
-^https:\/\/wxapp\.xiaolankj\.top\/api\/app\/user\.php\?act\=userCheckIn url script-request-header https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/XiaoLanTools/xl_tools_update.js
+;工学云Cookie获取
+^https:\/\/api\.moguding\.net\:9000\/attendence\/clock\/v4\/save url script-request-body https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/GongXueYun/gxy_cookie.js
 
 */
 
