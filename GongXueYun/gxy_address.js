@@ -74,7 +74,7 @@ function GetLocation(oldAddR, old_longitude, old_latitude, old_province, old_cit
     const setAddress = $.setdata(addressValue, `gxy_address`);
     const setLongitude = $.setdata(longitudeValue, `gxy_longitude`);
     const setLatitude = $.setdata(latitudeValue, `gxy_latitude`);
-    const setProvince = $.setdata(provinceValue, `gxyprovince`);
+    const setProvince = $.setdata(provinceValue, `gxy_province`);
     const setCity = $.setdata(cityValue, `gxy_city`);
     const setArea = $.setdata(areaValue, `gxy_area`);
     

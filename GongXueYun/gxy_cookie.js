@@ -18,30 +18,94 @@ const $ = new Env(`工学云`);
 
 
 //上班sign
-const start_sign = $.getdata('gxy_start_sign');
-
+const start_sign = $.getdata('gxy_start_sign') || '';
 //下班sign
-const end_sign = $.getdata('gxy_end_sign');
+const end_sign = $.getdata('gxy_end_sign') || '';
+
+//获取签到地址
+const location = $.getdata("gxy_address") || '';
+//获取签到经度
+const longitude = $.getdata("gxy_longitude") || '';
+//获取签到维度
+const latitude = $.getdata("gxy_latitude") ||'';
+//获取签到省份
+const province = $.getdata("gxy_province") || '';
+//获取签到城市
+const city = $.getdata("gxy_city") || '';
+//获取地区
+const area = $.getdata("gxy_area") || '';
+
+
+
 
 if (typeof $request !== 'undefined') {
-    GetCookie(start_sign, end_sign)
+    GetCookie(start_sign, end_sign, location, longitude, latitude, province, city, area)
+} else if (!start_sign) {
+    $.msg($.name, ``, `获取上班Sign失败/未获取 ⚠️`);
+    $.done();
+} else if (!end_sign) {
+    $.msg($.name, ``, `获取下班Sign失败/未获取 ⚠️`);
+    $.done();
+} else if (!location) {
+    $.msg($.name, ``, `获取签到位置失败/未获取 ⚠️`);
+    $.done();
+} else if (!longitude) {
+    $.msg($.name, ``, `获取签到经度失败/未获取 ⚠️`);
+    $.done();
+} else if (!latitude) {
+    $.msg($.name, ``, `获取签到纬度失败/未获取 ⚠️`);
+    $.done();
+} else if (!province) {
+    $.msg($.name, ``, `获取签到省份失败/未获取 ⚠️`);
+    $.done();
+} else if (!city) {
+    $.msg($.name, ``, `获取签到城市失败/未获取 ⚠️`);
+    $.done();
+} else if (!area) {
+    $.msg($.name, ``, `获取签到区域失败/未获取 ⚠️`);
+    $.done();
 }
 
-function GetCookie(old_start_sign, old_end_sign) {
+function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old_latitude, old_province, old_city, old_area) {
     const req = JSON.stringify($request);
     //$.log($.name, req)
 
     if (req.includes('/attendence/clock/v4/save')) {
-        
-        
-        
+
         //将请求体转为json格式
         
         const parse_body = JSON.parse($request.body);
+
         //获取请求头sign
-        
         const gxy_sign = $request.headers.sign;
-        
+        //获取签到地址
+        const addressValue = parse_body.address;
+        //获取签到经度
+        const longitudeValue = parse_body.longitude;
+        //获取签到纬度
+        const latitudeValue = parse_body.latitude;
+        //获取签到省份
+        const provinceValue = parse_body.province;
+        //获取签到城市
+        const cityValue = parse_body.city;
+        //获取签到区域   例：郊区
+        const areaValue = parse_body.area;
+
+
+        //设置签到地址
+        const setAddress = $.setdata(addressValue, `gxy_address`);
+        //设置签到经度
+        const setLongitude = $.setdata(longitudeValue, `gxy_longitude`);
+        //设置签到纬度
+        const setLatitude = $.setdata(latitudeValue, `gxy_latitude`);
+        //设置签到省份
+        const setProvince = $.setdata(provinceValue, `gxy_province`);
+        //设置签到城市
+        const setCity = $.setdata(cityValue, `gxy_city`);
+        //设置签到区域
+        const setArea = $.setdata(areaValue, `gxy_area`);
+
+
         if (parse_body.type === 'START') {
             
             const set_sign_start = $.setdata(gxy_sign, `gxy_start_sign`);
@@ -62,6 +126,45 @@ function GetCookie(old_start_sign, old_end_sign) {
             }
 
         }
+
+
+        if (old_address) {
+            $.log($.name, `更新位置${setAddress ? `成功 🎉` : `失败 ⚠️`}`);
+        } else {
+            $.msg($.name, ``, `获取位置${setAddress ? `成功 🎉` : `失败 ⚠️`}`);
+        }
+
+        if (old_longitude) {
+            $.log($.name, `更新经度${setLongitude ? `成功 🎉` : `失败 ⚠️`}`);
+        } else {
+            $.msg($.name, ``, `获取经度${setLongitude ? `成功 🎉` : `失败 ⚠️`}`);
+        }
+
+        if (old_latitude) {
+            $.log($.name, `更新纬度${setLatitude ? `成功 🎉` : `失败 ⚠️`}`);
+        } else {
+            $.msg($.name, ``, `获取纬度${setLatitude ? `成功 🎉` : `失败 ⚠️`}`);
+        }
+
+        if (old_province) {
+            $.log($.name, `更新省份${setProvince ? `成功 🎉` : `失败 ⚠️`}`);
+        } else {
+            $.msg($.name, ``, `获取省份${setProvince ? `成功 🎉` : `失败 ⚠️`}`);
+        }
+
+        if (old_city) {
+            $.log($.name, `更新城市${setCity ? `成功 🎉` : `失败 ⚠️`}`);
+        } else {
+            $.msg($.name, ``, `获取城市${setCity ? `成功 🎉` : `失败 ⚠️`}`);
+        }
+
+        if (old_area) {
+            $.log($.name, `更新地区${setArea ? `成功 🎉` : `失败 ⚠️`}`);
+        } else {
+            $.msg($.name, ``, `获取地区${setArea ? `成功 🎉` : `失败 ⚠️`}`);
+        }
+
+
         
 
 
