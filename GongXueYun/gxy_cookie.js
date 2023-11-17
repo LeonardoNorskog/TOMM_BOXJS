@@ -42,30 +42,28 @@ function GetCookie(old_start_sign, old_end_sign) {
         
         const gxy_sign = $request.headers.sign;
         
-        if (parse_body.type == 'START') {
+        if (parse_body.type === 'START') {
             
-            const setSign = $.setdata(gxy_sign, `gxy_start_sign`);
+            const set_sign_start = $.setdata(gxy_sign, `gxy_start_sign`);
+
+            if (old_start_sign) {
+                $.log($.name, `更新上班Sign${set_sign_start ? `成功 🎉` : `失败 ⚠️`}`);
+            } else {
+                 $.msg($.name, ``, `获取上班Sign${set_sign_start ? `成功 🎉` : `失败 ⚠️`}`);
+            }
+
+        } else if (parse_body.type === "END") {
+            const set_sign_end = $.setdata(gxy_sign, `gxy_end_sign`);
+
+            if (old_end_sign) {
+                $.log($.name, `更新下班Sign${set_sign_end ? `成功 🎉` : `失败 ⚠️`}`);
+            } else {
+                 $.msg($.name, ``, `获取下班Sign${set_sign_end ? `成功 🎉` : `失败 ⚠️`}`);
+            }
+
         }
         
 
-
-
-        //     const signValue = $request.headers['sign'];
-        //     // const setCookie = $.setdata(cookieValue, `gxy_tk`);
-        //     const setSign = $.setdata(signValue, `gxy_sign`)
-        //     // if (oldToken) {
-        //     //     $.log($.name, `更新Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
-        //     // } else {
-        //     //     $.msg($.name, ``, `获取Token${setCookie ? `成功 🎉` : `失败 ⚠️`}`);
-        //     // }
-        //
-        //     if (oldSign) {
-        //         $.log($.name, `更新Sign${setSign ? `成功 🎉` : `失败 ⚠️`}`);
-        //     } else {
-        //         $.msg($.name, ``, `获取Sign${setSign ? `成功 🎉` : `失败 ⚠️`}`);
-        //     }
-        //
-        // }
 
         $.done()
     }
