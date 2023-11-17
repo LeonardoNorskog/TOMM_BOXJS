@@ -6,10 +6,11 @@
 QX 1.0.10+ :
 
 [task_local]
+;小懒工具箱定时任务执行
 20 0 * * * https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/XiaoLanTools/xl_tools_update.js, tag=小懒工具箱签到
 
 [rewrite_local]
-获取token
+;小懒工具箱获取Cookie
 ^https:\/\/wxapp\.xiaolankj\.top\/api\/app\/user\.php\?act\=userCheckIn url script-request-header https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/XiaoLanTools/xl_tools_update.js
 
 */
