@@ -13,6 +13,11 @@ const account = "16630062606";
 const password = "Aa744850482";
 
 
+//上班sign
+const start_sign = $.getdata('gxy_start_sign') || '';
+//下班sign
+const end_sign = $.getdata('gxy_end_sign') || '';
+
 //获取签到地址
 const location = $.getdata("gxy_address") || '';
 //获取签到经度
@@ -37,23 +42,23 @@ const userData = {};
 	await getPlanId();
 
     // 获取当前时间
-    var currentTime = new Date();
+    const currentTime = new Date();
     // 获取当前小时
-    var currentHour = currentTime.getHours();
+    const currentHour = currentTime.getHours();
 
     // 判断当前时间
     if (currentHour >= 12) {
         // 如果当前时间过了中午十二点，执行函数1
-        await doSign();
+        await doSign(end_sign, "END");
     } else {
         // 否则执行函数2
-        await doSign();
+        await doSign(start_sign, "START");
     }
     $.done(); //抢购完成后调用Surge、QX内部特有的函数, 用于退出脚本执行
 })();
 
 //AES加密
-function aesEncrypt(data) {
+function aesEncrypt(data){
   // 将密钥转为Utf8格式
   const keyUtf8 = CryptoJS.enc.Utf8.parse(aesKey);
 
@@ -242,7 +247,7 @@ function getPlanId() {
 }
 
 //device + signType + planId + userId + address
-function doSign(sign) {
+function doSign(sign, sign_type) {
 
     const options = {
         url : "https://api.moguding.net:9000/attendence/clock/v4/save",
@@ -267,7 +272,7 @@ function doSign(sign) {
             "description": null,
             "majorName": null,
             "modifiedTime": null,
-            "type": "START",
+            "type": sign_type,
             "modifiedBy": null,
             "attachments": null,
             "depName": null,
@@ -335,4 +340,3 @@ async function BarkNotify(c, k, t, b) { for (let i = 0; i < 3; i++) { console.lo
 
 
 
-a = {"msg": "success", "data": {"authType":2,"expiredTime":2015505517000,"gender":0,"headImg":"f005585371b08470a447374c1a8e85c7.png","isAccount":0,"moguNo":"7378642","msgConfig":{},"neteaseImId":"2ec8dc1ab7f645e8afa93ed1c6b8af5e","nikeName":"董嘉怡","orgJson":{"classId":"847c784b64c8436dd09bd8ddd4dbe55d","className":"1班","depId":"777ca3050396e3b96f68ce1faa33f420","depName":"外语系","grade":"2021","majorField":"","majorId":"8bf089fb2b90416c9c203067d90bdacf","majorName":"婴幼儿托育服务与管理","schoolId":"1b1d31da5f84676a3a1403e27f28f5c5","schoolName":"衡水职业技术学院","snowFlakeId":"1000595","studentId":"7f49a187f1ef75e2d35e5b55264d436e","studentNumber":"202104160107","userName":"董嘉怡"},"phone":"13930335606","roleGroup":[{"currPage":1,"orderBy":"create_time","pageSize":10,"roleId":"1123121137695158273","roleKey":"student","roleLevel":"0","roleName":"学生","sort":"desc","totalCount":0,"totalPage":0}],"roleId":"1123121137695158273","roleKey":"student","roleLevel":"0","roleName":"学生","token":"eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJtb2d1ZGluZy11c2VyIiwic3ViIjoie1wibG9naW5UeXBlXCI6XCJhbmRyb2lkXCIsXCJ1c2VySWRcIjoxMDUzMjkzMTV9IiwiYXVkIjoibW9ndWRpbmciLCJleHAiOjIwMTU1MDU1MTcsIm5iZiI6MTY5OTg4NTQxNywiaWF0IjoxNjk5ODg2MzE3fQ.x4wuY7p8-KNCZy8QukvJbD_JJii3XH4G3JjW0G5AbvVoblW2_wpL1QrDRG4n_G7LQiP1YJSWxS46VykK9bmW4Q","userId":"105329315","userType":"student"}, "code": 200}
