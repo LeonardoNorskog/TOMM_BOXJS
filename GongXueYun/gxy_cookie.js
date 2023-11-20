@@ -38,10 +38,13 @@ const province = $.getdata("gxy_province") || '';
 const city = $.getdata("gxy_city") || '';
 //获取地区
 const area = $.getdata("gxy_area") || '';
+//获取token
+const token  = $.getdata("gxy_token") || '';
+
 
 
 if (typeof $request !== 'undefined') {
-    GetCookie(start_sign, end_sign, location, longitude, latitude, province, city, area)
+    GetCookie(start_sign, end_sign, location, longitude, latitude, province, city, area, token);
 } else if (!start_sign) {
     $.msg($.name, ``, `获取上班Sign失败/未获取 ⚠️`);
     $.done();
@@ -66,9 +69,13 @@ if (typeof $request !== 'undefined') {
 } else if (!area) {
     $.msg($.name, ``, `获取签到区域失败/未获取 ⚠️`);
     $.done();
+} else if (!token) {
+    $.msg($.name, ``, `获取Token失败/未获取 ⚠️`);
+    $.done();
 }
 
-function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old_latitude, old_province, old_city, old_area) {
+function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old_latitude, old_province, old_city, old_area, old_token) {
+
     const req = JSON.stringify($request);
     //$.log($.name, req)
 
@@ -78,8 +85,10 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
 
         const parse_body = JSON.parse($request.body);
 
-        //获取请求头sign
+        //获取签到请求头sign
         const gxy_sign = $request.headers.sign;
+        //获取请求头token
+        const tokenValue = $request.headers.authorization;
         //获取签到地址
         const addressValue = parse_body.address;
         //获取签到经度
@@ -106,6 +115,8 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
         const setCity = $.setdata(cityValue, `gxy_city`);
         //设置签到区域
         const setArea = $.setdata(areaValue, `gxy_area`);
+        //设置token
+        const setToken = $.setdata(tokenValue, `gxy_token`);
 
 
         if (parse_body.type === 'START') {
@@ -127,6 +138,12 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
                 $.msg($.name, ``, `获取下班Sign${set_sign_end ? `成功 🎉` : `失败 ⚠️`}`);
             }
 
+        }
+
+        if (old_token) {
+            $.log($.name, `更新token${setToken ? `成功 🎉` : `失败 ⚠️`}`);
+        } else {
+            $.msg($.name, ``, `获取token${setToken ? `成功 🎉` : `失败 ⚠️`}`);
         }
 
 

@@ -23,18 +23,18 @@ QuantumultX：
  $ = new Env(`工学云`);
 
 
-//工学云账号
-const account = "";
+// //工学云账号
+// const account = "";
+//
+// //工学云密码
+// const password = "";
 
-//工学云密码
-const password = "";
-
-
+//获取token
+const token  = $.getdata("gxy_token") || '';
 //上班sign
 const start_sign = $.getdata('gxy_start_sign') || '';
 //下班sign
 const end_sign = $.getdata('gxy_end_sign') || '';
-
 //获取签到地址
 const location = $.getdata("gxy_address") || '';
 //获取签到经度
@@ -55,7 +55,7 @@ const userData = {};
 //调用
 (async function() { // 立即运行的匿名异步函数
 
-    await doLogin();
+    // await doLogin();
 	await getPlanId();
 
     // 获取当前时间
@@ -188,6 +188,8 @@ function doLogin() {
                         userData.userId = endata.userId
                         userData.sign = sign;
 
+                        //
+
                         console.log(`\n当前Sign：${sign}`);
                         console.log(`\n当前Token：${endata.token}`);
 
@@ -218,7 +220,7 @@ function getPlanId() {
         headers: {
             'user-agent': 'Dart/2.17 (dart:io)',
             'sign': userData.sign,
-            'authorization': userData.token,
+            'authorization': token,
             'content-type': 'application/json'
         },
         'body': JSON.stringify({
@@ -271,7 +273,7 @@ function doSign(sign, sign_type) {
         headers : {
             'user-agent': 'Dart/2.17 (dart:io)',
             'sign': sign,
-            'authorization': userData.token,
+            'authorization': token,
             'content-type': 'application/json'
         },
         body: JSON.stringify({
