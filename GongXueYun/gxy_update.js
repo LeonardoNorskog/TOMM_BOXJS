@@ -33,7 +33,7 @@ hostname = api.moguding.net
 
 
 //获取planId
-const planId = $.getdata("gxy_planId") || '';
+// const planId = $.getdata("gxy_planId") || '';
 //获取token
 const token  = $.getdata("gxy_token") || '';
 //上班sign
