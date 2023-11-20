@@ -40,12 +40,12 @@ const city = $.getdata("gxy_city") || '';
 const area = $.getdata("gxy_area") || '';
 //获取token
 const token  = $.getdata("gxy_token") || '';
-// //获取planId
-// const planId = $.getdata("gxy_planId") || '';
+//获取userId
+const userId = $.getdata("gxy_userId") || '';
 
 
 if (typeof $request !== 'undefined') {
-    GetCookie(start_sign, end_sign, location, longitude, latitude, province, city, area, token);
+    GetCookie(start_sign, end_sign, location, longitude, latitude, province, city, area, token, userId);
 } else if (!start_sign) {
     $.msg($.name, ``, `获取上班Sign失败/未获取 ⚠️`);
     $.done();
@@ -73,13 +73,13 @@ if (typeof $request !== 'undefined') {
 } else if (!token) {
     $.msg($.name, ``, `获取Token失败/未获取 ⚠️`);
     $.done();
-}
-// } else if (!planId) {
-//     $.msg($.name, ``, `获取签到计划失败/未获取 ⚠️`);
-//     $.done();
-// }
 
-function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old_latitude, old_province, old_city, old_area, old_token) {
+} else if (!userId) {
+    $.msg($.name, ``, `获取用户ID失败/未获取 ⚠️`);
+    $.done();
+}
+
+function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old_latitude, old_province, old_city, old_area, old_token, old_userId) {
 
     const req = JSON.stringify($request);
     //$.log($.name, req)
@@ -93,7 +93,8 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
         const gxy_sign = $request.headers.sign;
         //获取请求头token
         const tokenValue = $request.headers.authorization;
-        // const planIdValue = parse_body.planId;
+        //获取用户id
+        const userIdValue = parse_body.userId;
         //获取签到地址
         const addressValue = parse_body.address;
         //获取签到经度
@@ -122,8 +123,8 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
         const setArea = $.setdata(areaValue, `gxy_area`);
         //设置token
         const setToken = $.setdata(tokenValue, `gxy_token`);
-        //设置planId
-        // const setPlanId = $.setdata(planIdValue, `gxy_planId`);
+        // 设置userId
+        const setUserId = $.setdata(userIdValue, `gxy_userId`);
 
 
 
@@ -148,11 +149,11 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
 
         }
 
-        // if (old_planId) {
-        //     $.log($.name, `更新计划${setPlanId ? `成功 🎉` : `失败 ⚠️`}`);
-        // } else {
-        //     $.msg($.name, ``, `获取计划${setPlanId ? `成功 🎉` : `失败 ⚠️`}`);
-        // }
+        if (old_userId) {
+            $.log($.name, `更新用户ID${setUserId ? `成功 🎉` : `失败 ⚠️`}`);
+        } else {
+            $.msg($.name, ``, `获取用户ID${setUserId ? `成功 🎉` : `失败 ⚠️`}`);
+        }
 
         if (old_token) {
             $.log($.name, `更新token${setToken ? `成功 🎉` : `失败 ⚠️`}`);

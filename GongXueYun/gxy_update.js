@@ -32,8 +32,8 @@ hostname = api.moguding.net
 // const password = "";
 
 
-//获取planId
-// const planId = $.getdata("gxy_planId") || '';
+// 获取userId
+const userId = $.getdata("gxy_userId") || '';
 //获取token
 const token  = $.getdata("gxy_token") || '';
 //上班sign
@@ -55,7 +55,7 @@ const area = $.getdata("gxy_area") || '';
 //AES加密key
 const aesKey = '23DbtQHR2UMbH6mJ';
 const userData = {};
-
+const sign = CryptoJS.MD5(userId + "student" + "3478cbbc33f84bd00d75d7dfa69e0daa").toString();
 
 //调用
 (async function() { // 立即运行的匿名异步函数
