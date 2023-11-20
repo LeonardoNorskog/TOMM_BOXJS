@@ -40,7 +40,8 @@ const city = $.getdata("gxy_city") || '';
 const area = $.getdata("gxy_area") || '';
 //获取token
 const token  = $.getdata("gxy_token") || '';
-
+// //获取planId
+// const planId = $.getdata("gxy_planId") || '';
 
 
 if (typeof $request !== 'undefined') {
@@ -73,6 +74,10 @@ if (typeof $request !== 'undefined') {
     $.msg($.name, ``, `获取Token失败/未获取 ⚠️`);
     $.done();
 }
+// } else if (!planId) {
+//     $.msg($.name, ``, `获取签到计划失败/未获取 ⚠️`);
+//     $.done();
+// }
 
 function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old_latitude, old_province, old_city, old_area, old_token) {
 
@@ -84,11 +89,11 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
         //将请求体转为json格式
 
         const parse_body = JSON.parse($request.body);
-
         //获取签到请求头sign
         const gxy_sign = $request.headers.sign;
         //获取请求头token
         const tokenValue = $request.headers.authorization;
+        // const planIdValue = parse_body.planId;
         //获取签到地址
         const addressValue = parse_body.address;
         //获取签到经度
@@ -117,6 +122,9 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
         const setArea = $.setdata(areaValue, `gxy_area`);
         //设置token
         const setToken = $.setdata(tokenValue, `gxy_token`);
+        //设置planId
+        // const setPlanId = $.setdata(planIdValue, `gxy_planId`);
+
 
 
         if (parse_body.type === 'START') {
@@ -139,6 +147,12 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
             }
 
         }
+
+        // if (old_planId) {
+        //     $.log($.name, `更新计划${setPlanId ? `成功 🎉` : `失败 ⚠️`}`);
+        // } else {
+        //     $.msg($.name, ``, `获取计划${setPlanId ? `成功 🎉` : `失败 ⚠️`}`);
+        // }
 
         if (old_token) {
             $.log($.name, `更新token${setToken ? `成功 🎉` : `失败 ⚠️`}`);

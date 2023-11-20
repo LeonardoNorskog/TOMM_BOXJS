@@ -31,6 +31,9 @@ hostname = api.moguding.net
 // //工学云密码
 // const password = "";
 
+
+//获取planId
+const planId = $.getdata("gxy_planId") || '';
 //获取token
 const token  = $.getdata("gxy_token") || '';
 //上班sign
@@ -221,7 +224,7 @@ function getPlanId() {
         url: 'https://api.moguding.net:9000/practice/plan/v3/getPlanByStu',
         headers: {
             'user-agent': 'Dart/2.17 (dart:io)',
-            'sign': userData.sign,
+            'sign': sign,
             'authorization': token,
             'content-type': 'application/json'
         },
