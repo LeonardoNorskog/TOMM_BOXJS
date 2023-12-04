@@ -10,10 +10,10 @@ $ = new Env(`工学云`);
 const body = $response.body;
 const obj = JSON.parse(body);
 
-obj.vipInfo.startTime = '2023-12-03 00:00:00'
-obj.vipInfo.endTime = '2023-12-13 00:00:00'
-obj.vipInfo.type = 2
-obj.vipInfo.days = 10
+obj.data.vipInfo.startTime = '2023-12-03 00:00:00'
+obj.data.vipInfo.endTime = '2023-12-13 00:00:00'
+obj.data.vipInfo.type = 2
+obj.data.vipInfo.days = 10
 
 
 
