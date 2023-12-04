@@ -17,7 +17,7 @@ obj.data.vipInfo.days = 10
 
 
 
-$.log(obj.vipInfo);
+$.log(obj.data.vipInfo);
 
 
 $.done({body: JSON.stringify(obj)})
