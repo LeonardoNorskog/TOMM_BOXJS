@@ -14,6 +14,9 @@ obj.data.vipInfo.startTime = '2023-12-03 00:00:00'
 obj.data.vipInfo.endTime = '2023-12-13 00:00:00'
 obj.data.vipInfo.type = 1
 obj.data.vipInfo.days = 10
+obj.data.uptime = '2023-12-03 00:00:00'
+obj.data.quota = '9999'
+
 
 
 
