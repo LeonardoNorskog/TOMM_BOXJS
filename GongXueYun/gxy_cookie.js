@@ -134,6 +134,7 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
 
             if (old_start_sign) {
                 $.log($.name, `更新上班Sign${set_sign_start ? `成功 🎉` : `失败 ⚠️`}`);
+                $.msg($.name, ``, `更新上班Sign${set_sign_start ? `成功 🎉` : `失败 ⚠️`}`)
             } else {
                 $.msg($.name, ``, `获取上班Sign${set_sign_start ? `成功 🎉` : `失败 ⚠️`}`);
             }
@@ -143,6 +144,7 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
 
             if (old_end_sign) {
                 $.log($.name, `更新下班Sign${set_sign_end ? `成功 🎉` : `失败 ⚠️`}`);
+                $.msg($.name, ``, `更新下班Sign${set_sign_end ? `成功 🎉` : `失败 ⚠️`}`);
             } else {
                 $.msg($.name, ``, `获取下班Sign${set_sign_end ? `成功 🎉` : `失败 ⚠️`}`);
             }
@@ -151,12 +153,14 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
 
         if (old_userId) {
             $.log($.name, `更新用户ID${setUserId ? `成功 🎉` : `失败 ⚠️`}`);
+            $.msg($.name, ``, `更新用户ID${setUserId ? `成功 🎉` : `失败 ⚠️`}`);
         } else {
             $.msg($.name, ``, `获取用户ID${setUserId ? `成功 🎉` : `失败 ⚠️`}`);
         }
 
         if (old_token) {
             $.log($.name, `更新token${setToken ? `成功 🎉` : `失败 ⚠️`}`);
+            $.msg($.name, ``, `更新token${setToken ? `成功 🎉` : `失败 ⚠️`}`);
         } else {
             $.msg($.name, ``, `获取token${setToken ? `成功 🎉` : `失败 ⚠️`}`);
         }
@@ -164,36 +168,42 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
 
         if (old_address) {
             $.log($.name, `更新位置${setAddress ? `成功 🎉` : `失败 ⚠️`}`);
+            $.msg($.name, ``, `更新位置${setAddress ? `成功 🎉` : `失败 ⚠️`}`);
         } else {
             $.msg($.name, ``, `获取位置${setAddress ? `成功 🎉` : `失败 ⚠️`}`);
         }
 
         if (old_longitude) {
             $.log($.name, `更新经度${setLongitude ? `成功 🎉` : `失败 ⚠️`}`);
+            $.msg($.name, ``, `更新经度${setLongitude ? `成功 🎉` : `失败 ⚠️`}`);
         } else {
             $.msg($.name, ``, `获取经度${setLongitude ? `成功 🎉` : `失败 ⚠️`}`);
         }
 
         if (old_latitude) {
             $.log($.name, `更新纬度${setLatitude ? `成功 🎉` : `失败 ⚠️`}`);
+            $.msg($.name, ``, `更新纬度${setLatitude ? `成功 🎉` : `失败 ⚠️`}`);
         } else {
             $.msg($.name, ``, `获取纬度${setLatitude ? `成功 🎉` : `失败 ⚠️`}`);
         }
 
         if (old_province) {
             $.log($.name, `更新省份${setProvince ? `成功 🎉` : `失败 ⚠️`}`);
+            $.msg($.name, ``, `更新省份${setProvince ? `成功 🎉` : `失败 ⚠️`}`);
         } else {
             $.msg($.name, ``, `获取省份${setProvince ? `成功 🎉` : `失败 ⚠️`}`);
         }
 
         if (old_city) {
             $.log($.name, `更新城市${setCity ? `成功 🎉` : `失败 ⚠️`}`);
+            $.msg($.name, ``, `更新城市${setCity ? `成功 🎉` : `失败 ⚠️`}`);
         } else {
             $.msg($.name, ``, `获取城市${setCity ? `成功 🎉` : `失败 ⚠️`}`);
         }
 
         if (old_area) {
             $.log($.name, `更新地区${setArea ? `成功 🎉` : `失败 ⚠️`}`);
+            $.msg($.name, ``, `更新地区${setArea ? `成功 🎉` : `失败 ⚠️`}`);
         } else {
             $.msg($.name, ``, `获取地区${setArea ? `成功 🎉` : `失败 ⚠️`}`);
         }
