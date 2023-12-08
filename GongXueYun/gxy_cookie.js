@@ -107,8 +107,6 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
         const cityValue = parse_body.city;
         //获取签到区域   例：郊区
         const areaValue = parse_body.area;
-
-
         //设置签到地址
         const setAddress = $.setdata(addressValue, `gxy_address`);
         //设置签到经度
