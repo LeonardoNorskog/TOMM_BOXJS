@@ -1,22 +1,3 @@
-/*
-===================工学云签到QX脚本===================
-
-说明：
-
-打开工学云先手动下拉刷新一下然后点击签到，必须上班下班各手动签到一次，提示获取上班Sign、下班Sign等等完成后即可正常签到
-使用：
-QuantumultX：
-
-签到是每天7点和18点各一次
-[task_local]
-;工学云定时签到
-0 7,18 * * * https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/GongXueYun/gxy_update.js, tag=工学云签到
-
-[rewrite_local]
-;工学云Cookie获取
-^https:\/\/api\.moguding\.net\:9000\/attendence\/clock\/v4\/save url script-request-body https://raw.githubusercontent.com/LeonardoNorskog/TOMM_BOXJS/main/GongXueYun/gxy_cookie.js
-
-*/
 
 const $ = new Env(`工学云`);
 
