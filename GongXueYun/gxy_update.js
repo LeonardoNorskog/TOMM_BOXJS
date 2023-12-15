@@ -259,7 +259,7 @@ function getPlanId() {
                     }
                 }
             } catch (e) {
-                console.log(`出现错误${message}`);
+                console.log(`出现错误${e.message}`);
             } finally {
                 resolve()
             }
