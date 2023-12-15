@@ -64,9 +64,7 @@ Shadowrocket（2.2.41）
 准备工作：
 安装并信任证书
 打开https解密
-
-第一步：
-打开默认配置文件default.conf写入以下内容
+手动签到完成记得关闭https解密和禁用cookie获取脚本
 
 [Script]
 test = type=cron,script-path=test.js,cronexpr="0 * * * * *",timeout=10,script-update-interval=0,enable=false
