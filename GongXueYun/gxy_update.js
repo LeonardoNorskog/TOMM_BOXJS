@@ -40,6 +40,10 @@ const sign = CryptoJS.MD5(userId + "student" + "3478cbbc33f84bd00d75d7dfa69e0daa
 //获取签到计划
 const planId = $.getdata("gxy_planId") || '';
 
+//获取当前环境
+const nowEnv = $.getEnv()
+
+
 //调用
 (async function() { // 立即运行的匿名异步函数
 
@@ -320,6 +324,7 @@ function doSign(sign, sign_type) {
                 } else {
                     const body = JSON.parse(data);
                     if (body.code === 200 && body.data) {
+                        console.log(`当前环境：${nowEnv}`)
                         console.log(`当前planId：${planId}`)
                         console.log(`签到结果：${body.msg}`);
                     } else {

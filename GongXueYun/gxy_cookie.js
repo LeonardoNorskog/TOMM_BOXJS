@@ -26,8 +26,6 @@ const userId = $.getdata("gxy_userId") || '';
 //获取planId
 const planId = $.getdata("gxy_planId") || '';
 
-//获取当前环境
-const nowEnv = $.getEnv()
 
 
 if (typeof $request !== 'undefined') {
