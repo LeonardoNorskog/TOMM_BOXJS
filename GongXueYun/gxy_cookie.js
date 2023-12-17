@@ -78,7 +78,7 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
         //获取签到请求头sign
         const gxy_sign = $request.headers.sign;
         //获取请求头token
-        const tokenValue = $request.headers.Authorization;
+        const tokenValue = $request.headers.authorization;
         //获取用户id
         const userIdValue = parse_body.userId;
         //获取签到地址
