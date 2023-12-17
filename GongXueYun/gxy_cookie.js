@@ -61,7 +61,7 @@ if (typeof $request !== 'undefined') {
     $.msg($.name, ``, `获取用户ID失败/未获取 ⚠️`);
     $.done();
 } else if (!planId) {
-    $.msg($.name, ``, `获取用户ID失败/未获取 ⚠️`);
+    $.msg($.name, ``, `获取签到计划失败/未获取 ⚠️`);
     $.done();
 }
 
