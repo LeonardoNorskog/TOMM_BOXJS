@@ -37,11 +37,14 @@ const aesKey = '23DbtQHR2UMbH6mJ';
 const userData = {};
 const sign = CryptoJS.MD5(userId + "student" + "3478cbbc33f84bd00d75d7dfa69e0daa").toString();
 
+//获取签到计划
+const planId = $.getdata("gxy_planId") || '';
+
 //调用
 (async function() { // 立即运行的匿名异步函数
 
     // await doLogin();
-	await getPlanId();
+	//await getPlanId();
 
     // 获取当前时间
     const currentTime = new Date();
@@ -265,7 +268,7 @@ function doSign(sign, sign_type) {
             "attendanceId": null,
             "device": "{brand: iPhone, systemVersion: 16.7.1, Platform: iOS, isPhysicalDevice: true, incremental: 16.7.1}",
             "isDeleted": null,
-            "planId": userData.planId,
+            "planId": planId,
             "country": "中国",
             "state": "NORMAL",
             "attendanceType": null,
@@ -317,6 +320,7 @@ function doSign(sign, sign_type) {
                 } else {
                     const body = JSON.parse(data);
                     if (body.code === 200 && body.data) {
+                        console.log(`当前planId：${planId}`)
                         console.log(`签到结果：${body.msg}`);
                     } else {
                         throw new Error(body.msg || data);
