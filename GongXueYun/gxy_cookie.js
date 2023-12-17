@@ -26,6 +26,9 @@ const userId = $.getdata("gxy_userId") || '';
 //获取planId
 const planId = $.getdata("gxy_planId") || '';
 
+//获取当前环境
+const nowEnv = $.getEnv()
+
 
 if (typeof $request !== 'undefined') {
     GetCookie(start_sign, end_sign, location, longitude, latitude, province, city, area, token, userId, planId);
@@ -203,6 +206,8 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
         } else {
             $.msg($.name, ``, `获取计划${setPlanId ? `成功 🎉` : `失败 ⚠️`}`);
         }
+        
+        $.log($.name, `当前环境：${nowEnv}`);
 
 
         $.done()
