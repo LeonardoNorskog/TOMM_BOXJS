@@ -205,7 +205,7 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
             $.msg($.name, ``, `获取计划${setPlanId ? `成功 🎉` : `失败 ⚠️`}`);
         }
         
-        $.log($.name, `当前环境：${nowEnv}`);
+    
 
 
         $.done()
