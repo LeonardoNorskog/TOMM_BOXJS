@@ -1491,7 +1491,7 @@ const planId = $.getdata("gxy_planId") || '';
 
     // await doLogin();
     //await getPlanId();
-    await getIp();
+    // await getIp();
 
     // 获取当前时间
     const currentTime = new Date();
