@@ -1,6 +1,8 @@
 
 const $ = new Env(`工学云`);
 
+//获取当前环境
+const nowEnv = $.getEnv();
 
 //上班sign
 const start_sign = $.getdata('gxy_start_sign') || '';
@@ -78,8 +80,17 @@ function GetCookie(old_start_sign, old_end_sign, old_address, old_longitude, old
         const parse_body = JSON.parse($request.body);
         //获取签到请求头sign
         const gxy_sign = $request.headers.sign;
-        //获取请求头token
-        const tokenValue = $request.headers.authorization;
+
+        let tokenValue;
+
+        if (nowEnv === 'Shadowrocket') {
+            //获取请求头token
+            tokenValue = $request.headers.Authorization;
+        } else {
+            //获取请求头token
+            tokenValue = $request.headers.authorization;
+        }
+
         //获取用户id
         const userIdValue = parse_body.userId;
         //获取签到地址
